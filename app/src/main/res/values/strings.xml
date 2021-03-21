@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Bills Manager</string>
+
+    <!-- default icon name -->
+    <string name="alim">food</string>
+    <string name="home">home/rent</string>
+    <string name="life">every day life</string>
+    <string name="tran">transport/car</string>
+    <string name="heal">health</string>
+    <string name="digi">digital</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
