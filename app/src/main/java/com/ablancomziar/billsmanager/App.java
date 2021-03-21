@@ -50,7 +50,7 @@ public class App extends Application {
                 for (int i = 0; i < tag.length; i++)
                     tags.add(tag[i]);
                 for(String line: lines){
-                    CustomTag t = new CustomTag(line);
+                    CustomTag t = new CustomTag(this,line);
                     tags.add(t);
                     customTags.add(t);
                 }

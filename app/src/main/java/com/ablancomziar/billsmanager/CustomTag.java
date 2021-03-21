@@ -1,12 +1,19 @@
 package com.ablancomziar.billsmanager;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 
 public final class CustomTag implements ITag {
-    private String name;
 
-    public CustomTag(String name) {
+    static private int ID_TAG = R.drawable.label;
+    static private boolean HAS_ICON = true;
+
+    private String name;
+    private Drawable icon;
+
+    public CustomTag(Context ctx, String name) {
         this.name = name;
+        icon = ctx.getDrawable(ID_TAG);
     }
 
     @Override
@@ -16,11 +23,11 @@ public final class CustomTag implements ITag {
 
     @Override
     public boolean hasIcon() {
-        return false;
+        return HAS_ICON;
     }
 
     @Override
     public Drawable getIcon() {
-        return null;
+        return icon;
     }
 }
