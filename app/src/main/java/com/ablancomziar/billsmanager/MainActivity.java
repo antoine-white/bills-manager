@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         List<ITag> tags = a.getTags();
         for (ITag t : tags)
             Log.println(Log.DEBUG,App.getAppTag(),t.getName());
-        a.addTag("Enfants");
+        a.addTag("Uber Eat");
 
 
 

@@ -21,7 +21,7 @@ public class App extends Application {
 
     private static String APP_TAG = "tagg";
     private static Context mContext;
-    private static String filename = "test1";
+    private static String filename = "test2";
     private List<ITag> tags;
     private List<CustomTag> customTags;
     private File file;
@@ -49,10 +49,6 @@ public class App extends Application {
                 List<String> lines = Files.readAllLines(Paths.get(file.getPath()));
 
                 Log.println(Log.DEBUG, APP_TAG, "found file !");
-                Log.println(Log.DEBUG, APP_TAG, "Got string first line : " + lines.get(0));
-                for(String line: lines)
-                    Log.println(Log.DEBUG, APP_TAG, line);
-
                 ITag[] tag = DefaultTag.getAllDefaultTag(this);
                 tags = new ArrayList<>();
                 for (int i = 0; i < tag.length; i++)
