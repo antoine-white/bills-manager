@@ -9,6 +9,17 @@
     <string name="heal">health</string>
     <string name="digi">digital</string>
 
+    <!-- Main Activity -->
+    <string name="version">v%1$s</string>
+
+    <!-- Add activity -->
+    <string name="addtitle">Add an Invoice </string>
+    <string name="amountLabel">Amount :</string>
+    <string name="dateLabel"> Date : </string>
+    <string name="radiobuttonIsCredit">Debtor</string>
+    <string name="radiobuttonIsDebit">Creditor</string>
+    <string name="destName">Recipient : </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

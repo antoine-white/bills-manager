@@ -4,21 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.widget.TextView;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuInteractionListener {
 
-    private static final Pair<Integer,String>[] MENU_DATA = new Pair[]{
-            new Pair<>(R.drawable.add, "Add"),
-            new Pair<>(R.drawable.tags, "EditTags"),
-            // todo better word !!
-            new Pair<>(R.drawable.report, "Previous ??"),
-            new Pair<>(R.drawable.chart, "Chart"),
-            new Pair<>(R.drawable.privacy, "Privacy policies"),
+    class MenuData{
+        private int id;
+        private String name;
+        private Class<?> cls;
+
+        public MenuData(int id, String name, Class<?> cls) {
+            this.id = id;
+            this.name = name;
+            this.cls = cls;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Class<?> getCls() {
+            return cls;
+        }
+    }
+
+    private final MenuData[] MENU_DATA = new MenuData[]{
+            new MenuData(R.drawable.add, "Add",AddActivity.class),
+            new MenuData(R.drawable.tags, "EditTags",MainActivity.class),
+            // todo : better word !!
+            new MenuData(R.drawable.report, "Previous ??",MainActivity.class),
+            new MenuData(R.drawable.chart, "Chart",MainActivity.class),
+            new MenuData(R.drawable.privacy, "Privacy policies",MainActivity.class),
     };
 
     static int i = 0;
@@ -27,19 +53,21 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((TextView)findViewById(R.id.version)).setText(getString(R.string.version, BuildConfig.VERSION_NAME));
+
         App a = (App) getApplication();
         List<ITag> tags = a.getTags();
         for (ITag t : tags)
             Log.println(Log.DEBUG,App.getAppTag(),t.getName());
-        a.addTag(new CustomTag(this,"enfants"));
+        a.addTag("Enfants");
 
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        for( Pair<Integer,String> data : MENU_DATA){
-            MenuItem fragment = MenuItem.newInstance(data.first,data.second);
+        for( MenuData data : MENU_DATA){
+            MenuItem fragment = MenuItem.newInstance(data.getId(),data.getName());
             fragmentTransaction.add(R.id.parent_menu,fragment);
         }
 
@@ -50,6 +78,11 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
 
     @Override
     public void onFragmentInteraction(String text) {
-        Log.d("jj",text);
+        Log.d(App.getAppTag(),text);
+        for( MenuData data : MENU_DATA)
+            if(data.getName().equals(text)){
+                Intent t = new Intent(this,data.getCls());
+                startActivity(t);
+            }
     }
 }

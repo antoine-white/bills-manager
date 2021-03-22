@@ -10,10 +10,17 @@ public final class CustomTag implements ITag {
 
     private String name;
     private Drawable icon;
+    private final int id;
 
-    public CustomTag(Context ctx, String name) {
+    public CustomTag(Context ctx, String name, int id) {
         this.name = name;
         icon = ctx.getDrawable(ID_TAG);
+        this.id = id;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override

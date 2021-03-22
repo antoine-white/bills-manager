@@ -6,21 +6,28 @@ import android.graphics.drawable.Drawable;
 public final class DefaultTag implements ITag {
     private String name;
     private Drawable icon;
+    private final int id;
 
-    private DefaultTag(String name, Drawable Icon) {
+    private DefaultTag(String name, Drawable Icon, int id) {
         this.name = name;
         icon = Icon;
+        this.id = id;
     }
 
     static public DefaultTag[] getAllDefaultTag(Context ctx){
         return new DefaultTag[]{
-            new DefaultTag(ctx.getString(R.string.alim),ctx.getDrawable(R.drawable.food)),
-            new DefaultTag(ctx.getString(R.string.home),ctx.getDrawable(R.drawable.home)),
-            new DefaultTag(ctx.getString(R.string.life),ctx.getDrawable(R.drawable.coffe)),
-            new DefaultTag(ctx.getString(R.string.tran),ctx.getDrawable(R.drawable.car)),
-            new DefaultTag(ctx.getString(R.string.heal),ctx.getDrawable(R.drawable.health)),
-            new DefaultTag(ctx.getString(R.string.digi),ctx.getDrawable(R.drawable.digital))
+            new DefaultTag(ctx.getString(R.string.alim),ctx.getDrawable(R.drawable.food),0),
+            new DefaultTag(ctx.getString(R.string.home),ctx.getDrawable(R.drawable.home),1),
+            new DefaultTag(ctx.getString(R.string.life),ctx.getDrawable(R.drawable.coffe),2),
+            new DefaultTag(ctx.getString(R.string.tran),ctx.getDrawable(R.drawable.car),3),
+            new DefaultTag(ctx.getString(R.string.heal),ctx.getDrawable(R.drawable.health),4),
+            new DefaultTag(ctx.getString(R.string.digi),ctx.getDrawable(R.drawable.digital),5)
         };
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
