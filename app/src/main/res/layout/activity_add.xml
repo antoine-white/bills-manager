@@ -89,13 +89,26 @@
 
     <TextView
         android:id="@+id/DestNameLabel"
-        android:layout_width="120dp"
-        android:layout_height="54dp"
+        android:layout_width="111dp"
+        android:layout_height="36dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="36dp"
         android:text="@string/destName"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <EditText
+        android:id="@+id/DestNameEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:labelFor="@id/DestNameLabel"
+        app:layout_constraintStart_toEndOf="@+id/DestNameLabel"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
