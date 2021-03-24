@@ -11,11 +11,14 @@ public final class CustomTag implements ITag {
     private String name;
     private Drawable icon;
     private final int id;
+    private final int color;
 
-    public CustomTag(Context ctx, String name, int id) {
+
+    public CustomTag(Context ctx, String name, int id, int color) {
         this.name = name;
         icon = ctx.getDrawable(ID_TAG);
         this.id = id;
+        this.color = color;
     }
 
     @Override
@@ -36,5 +39,10 @@ public final class CustomTag implements ITag {
     @Override
     public Drawable getIcon() {
         return icon;
+    }
+
+    @Override
+    public int getColor() {
+        return color;
     }
 }

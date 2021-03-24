@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
 
     private final MenuData[] MENU_DATA = new MenuData[]{
             new MenuData(R.drawable.add, "Add",AddActivity.class),
-            new MenuData(R.drawable.tags, "EditTags",MainActivity.class),
+            new MenuData(R.drawable.tags, "EditTags",TagActivity.class),
             // todo : better word !!
             new MenuData(R.drawable.report, "Previous ??",MainActivity.class),
             new MenuData(R.drawable.chart, "Chart",MainActivity.class),
@@ -54,14 +54,6 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((TextView)findViewById(R.id.version)).setText(getString(R.string.version, BuildConfig.VERSION_NAME));
-
-        App a = (App) getApplication();
-        List<ITag> tags = a.getTags();
-        for (ITag t : tags)
-            Log.println(Log.DEBUG,App.getAppTag(),t.getName());
-        a.addTag("Uber Eat");
-
-
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

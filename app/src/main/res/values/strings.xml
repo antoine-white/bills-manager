@@ -12,6 +12,11 @@
     <!-- Main Activity -->
     <string name="version">v%1$s</string>
 
+    <!-- tag Activity -->
+    <string name="tag_id">#%1$d</string>
+    <string name="name_already">Could not add %1$s. Name already taken !</string>
+    <string name="too_short">Could not add %1$s. Name too short !</string>
+
     <!-- Add activity -->
     <string name="addtitle">Add an Invoice </string>
     <string name="amountLabel">Amount :</string>

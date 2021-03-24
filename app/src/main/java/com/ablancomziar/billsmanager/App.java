@@ -3,6 +3,7 @@ package com.ablancomziar.billsmanager;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,12 +17,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class App extends Application {
 
     private static String APP_TAG = "tagg";
     private static Context mContext;
-    private static String filename = "test2";
+    private static String filename = "test3";
     private List<ITag> tags;
     private List<CustomTag> customTags;
     private File file;
@@ -58,7 +60,7 @@ public class App extends Application {
                 lines.remove(0);
                 for(String line: lines){
                     String strs[] = line.split(",");
-                    CustomTag t = new CustomTag(this,strs[1],Integer.valueOf(strs[0]));
+                    CustomTag t = new CustomTag(this,strs[1],Integer.valueOf(strs[0]),Integer.valueOf(strs[2]));
                     tags.add(t);
                     customTags.add(t);
                 }
@@ -82,17 +84,18 @@ public class App extends Application {
         return tags;
     }
 
-    public boolean addTag(String name){
+    public ITag addTag(String name){
         currentLastId++;
-        CustomTag t = new CustomTag(this,name,currentLastId);
+        Random r = new Random();
+        CustomTag t = new CustomTag(this,name,currentLastId, Color.rgb(r.nextInt(225),r.nextInt(225),r.nextInt(225)));
         for(ITag tag : tags){
             if (tag.getName().equals(t.getName()))
-                return false;
+                return null;
         }
         this.customTags.add(t);
         this.tags.add(t);
         this.saveCustomTags();
-        return true;
+        return t;
     }
 
     @SuppressLint("NewApi")
@@ -100,7 +103,7 @@ public class App extends Application {
         List<String> s = new ArrayList<>();
         s.add(customTags.get(customTags.size()-1).getId() + "");
         for (CustomTag c : this.customTags)
-            s.add(c.getId() + "," + c.getName());
+            s.add(c.getId() + "," + c.getName() + "," + c.getColor());
         try {
             Files.write(Paths.get(file.getPath()),s);
             Log.println(Log.DEBUG, APP_TAG, "Write on file successfull : " + s);
