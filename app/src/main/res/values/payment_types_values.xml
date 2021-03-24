@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="payment_types_values">
+        <item>Bank card</item>
+        <item>Bank check</item>
+        <item>Cash </item>
+    </string-array>
+
+
+</resources>
