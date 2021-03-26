@@ -65,6 +65,7 @@
     <string name="personalNameEdit" translatable="false" />
     <string name="notesLabel" translatable="false">Notes : </string>
     <string name="notesEditText" translatable="false" />
+    <string name="selectTagLabelForNewInvoice">Select a Tag : </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
@@ -76,6 +77,7 @@
     <string name="appGeneralText">An application to easily manage your invoices!</string>
     <string name="addNewTagLabel">Name of the new tag</string>
     <string name="addNewTagButton">Add</string>
+
 
 </resources>
 
