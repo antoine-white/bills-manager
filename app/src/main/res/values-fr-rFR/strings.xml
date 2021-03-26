@@ -25,4 +25,7 @@
     <string name="addressLabel">"Adresse : "</string>
     <string name="paymentLabel">Moyens de paiment</string>
     <string name="personalNameLabel">"Nom : "</string>
+
+    <string name="appVersion">v0.1</string>
+    <string name="appGeneralText">Une application pour facilement gérer vos factures !</string>
 </resources>
