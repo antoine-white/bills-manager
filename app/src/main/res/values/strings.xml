@@ -74,6 +74,8 @@
     <!-- General information -->
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">An application to easily manage your invoices!</string>
+    <string name="addNewTagLabel">Name of the new tag</string>
+    <string name="addNewTagButton">Add</string>
 
 </resources>
 

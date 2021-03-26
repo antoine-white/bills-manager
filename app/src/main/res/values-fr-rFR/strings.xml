@@ -28,4 +28,6 @@
 
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">Une application pour facilement gérer vos factures !</string>
+    <string name="addNewTagLabel">Nom du nouveau tag</string>
+    <string name="addNewTagButton">Ajouter</string>
 </resources>
