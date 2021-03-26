@@ -1,5 +1,7 @@
 package com.ablancomziar.billsmanager;
 
+import android.content.Context;
+
 public class Address {
 
     private int num;
@@ -28,5 +30,15 @@ public class Address {
 
     public String getStreet() {
         return street;
+    }
+
+    // todo use string.xml
+    public String getFormattedAddress(Context ctx) {
+        return "Address{" +
+                "num=" + num +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", state='" + state + '\'' +
+                '}';
     }
 }

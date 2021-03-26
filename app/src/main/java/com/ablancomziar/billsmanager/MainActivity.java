@@ -10,6 +10,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuInteractionListener {
@@ -38,16 +39,17 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         }
     }
 
-    private final MenuData[] MENU_DATA = new MenuData[]{
-            new MenuData(R.drawable.add, "Add",AddActivity.class),
-            new MenuData(R.drawable.tags, "EditTags",TagActivity.class),
-            // todo : better word !!
-            new MenuData(R.drawable.report, "Previous ??",MainActivity.class),
-            new MenuData(R.drawable.chart, "Chart",MainActivity.class),
-            new MenuData(R.drawable.privacy, "Privacy policies",MainActivity.class),
-    };
-
-    static int i = 0;
+    // todo string.xml
+    private MenuData[] MENU_DATA (){
+        return new MenuData[]{
+                new MenuData(R.drawable.add, getString(R.string.add),AddActivity.class),
+                new MenuData(R.drawable.tags, getString(R.string.edit_tags),TagActivity.class),
+                // todo : better word !!
+                new MenuData(R.drawable.report, getString(R.string.saved_invoices),SavedActivity.class),
+                new MenuData(R.drawable.chart, getString(R.string.stats),MainActivity.class),
+                new MenuData(R.drawable.privacy, getString(R.string.policies),MainActivity.class),
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +60,23 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        for( MenuData data : MENU_DATA){
+        for( MenuData data : MENU_DATA()){
             MenuItem fragment = MenuItem.newInstance(data.getId(),data.getName());
             fragmentTransaction.add(R.id.parent_menu,fragment);
         }
 
         fragmentTransaction.commit();
+
+
+
+
+        App a = (App) getApplication();
+        /*
+        a.AddInvoice(new Invoice(10,new Date(),true,"burgerKing"));
+        a.AddInvoice(new Invoice(12,new Date(),true,"McDo"));
+        a.AddInvoice(new Invoice(10,new Date(),true,"KFC"));*/
+        for(Invoice i : a.getInvoices())
+            Log.d(App.getAppTag(),i.toString());
     }
 
 
@@ -71,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
     @Override
     public void onFragmentInteraction(String text) {
         Log.d(App.getAppTag(),text);
-        for( MenuData data : MENU_DATA)
+        for( MenuData data : MENU_DATA())
             if(data.getName().equals(text)){
                 Intent t = new Intent(this,data.getCls());
                 startActivity(t);

@@ -1,10 +1,12 @@
 package com.ablancomziar.billsmanager;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
-public final class Invoice {
+public final class Invoice implements Serializable {
 
-    private final int amount;
+    private final float amount;
     private final Date invoiceDate;
     private final boolean isCredit;
     /**
@@ -12,16 +14,16 @@ public final class Invoice {
      */
     private final String name;
 
-    private ITag[] tags;
+    private int[] tags;
 
     private Payment payment = null;
 
     private Address address = null ;
 
     private String notes = null;
-    private String invoiceName = null;
+    private String personalName = null;
 
-    public Invoice(int amount, Date invoiceDate, boolean isCredit, String name) {
+    public Invoice(float amount, Date invoiceDate, boolean isCredit, String name) {
         this.amount = amount;
         this.invoiceDate = invoiceDate;
         this.isCredit = isCredit;
@@ -29,31 +31,32 @@ public final class Invoice {
     }
 
     public void addPayment(Payment payment){
-        if (this.payment != null)
+        if (this.payment == null)
             this.payment = payment;
     }
 
     public void addAddress(Address new_address){
-        if (this.address != null)
+        if (this.address == null)
             this.address = new_address;
     }
 
     public void addNotes(String notes){
-        if (this.notes != null)
+        if (this.notes == null)
             this.notes = notes;
     }
 
     public void addInvoiceName(String name){
-        if (this.invoiceName != null)
-            this.invoiceName = name;
+        if (this.personalName == null)
+            this.personalName = name;
     }
 
-    public void addTags(ITag[] tags){
-        if(this.tags != null)
+    public void addTagsId(int[] tags){
+        if(this.tags == null)
             this.tags = tags;
+
     }
 
-    public int getAmount() { return this.amount; }
+    public float getAmount() { return this.amount; }
 
     public Date getInvoiceDate() { return this.invoiceDate; }
 
@@ -69,9 +72,46 @@ public final class Invoice {
 
     public String getNotes() { return this.notes; }
 
-    public String getInvoiceName() { return this.invoiceName; }
+    public String getPersonalName() { return this.personalName; }
 
     public boolean isCredit() { return isCredit; }
 
-    public ITag[] getTags() { return tags; }
+    public int[] getTags() { return tags; }
+
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "amount=" + amount +
+                ", invoiceDate=" + invoiceDate +
+                ", isCredit=" + isCredit +
+                ", name='" + name + '\'' +
+                ", tags=" + Arrays.toString(tags) +
+                ", payment=" + payment +
+                ", address=" + address +
+                ", notes='" + notes + '\'' +
+                ", personalName='" + personalName + '\'' +
+                '}';
+    }
+
+    //todo traduct
+    public String toHTML(App app){
+
+        String tagStr = "";
+        for (int id : tags){
+            ITag tag = app.getTagById(id);
+            if (tag != null)
+                tagStr += "<li>" + tag.getName() + "</li>";
+        }
+
+        return app.getString(R.string.html_invoice,
+                name,
+                amount,
+                Boolean.toString(isCredit),
+                invoiceDate.toString(),
+                tagStr,
+                address == null ? "" : address.getFormattedAddress(app),
+                personalName,
+                notes);
+    }
+
 }
