@@ -37,6 +37,7 @@
     <string name="saved_invoices">Saved Invoices</string>
     <string name="stats">Statistics</string>
     <string name="policies">Privacy policies</string>
+    <string name="intro">A short welcome message / or a quick explanation of the software</string>
 
     <!-- Saved Activity -->
     <string name="could_not_add">Could add not the selected tag</string>
