@@ -35,7 +35,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+<<<<<<< HEAD
         android:text="@string/intro"
+=======
+        android:text="@string/appGeneralText"
+>>>>>>> 510a92b86a32432edf3b353a772edb79a6af501c
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+<<<<<<< HEAD
+=======
+        android:text="@string/appVersion"
+>>>>>>> 510a92b86a32432edf3b353a772edb79a6af501c
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

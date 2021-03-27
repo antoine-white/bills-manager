@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bills Manager</string>
+    <string name="alim">alimentation</string>
+    <string name="home">foyer</string>
+    <string name="life">vie quotidienne</string>
+    <string name="tran">transport</string>
+    <string name="heal">santé</string>
+    <string name="add">Ajouter</string>
+    <string name="edit_tags">Editer les Tags</string>
+    <string name="saved_invoices">Factures sauvegardées</string>
+    <string name="stats">"Statistiques "</string>
+    <string name="policies">Politiques de confidentialité</string>
+    <string name="could_not_add">Ajout du tag impossible</string>
+    <string name="could_not_download">Téléchargement impossible</string>
+    <string name="download_succ">Téléchargement impossible</string>
+    <string name="name_already">Ajout de %1$s impossible. Nom déjà pris</string>
+    <string name="too_short">Ajout de %1$s impossible. Nom trop court</string>
+    <string name="addtitle">Ajouter une facture</string>
+    <string name="amountLabel">"Somme : "</string>
+    <string name="radiobuttonIsCredit">"Débiteur : "</string>
+    <string name="radiobuttonIsDebit">"Créditeur : "</string>
+    <string name="destName">"Destinataire : "</string>
+    <string name="infoSuppLabel">Informations optionnelles</string>
+    <string name="addressLabel">"Adresse : "</string>
+    <string name="paymentLabel">Moyens de paiment</string>
+    <string name="personalNameLabel">"Nom : "</string>
+
+    <string name="appVersion">v0.1</string>
+    <string name="appGeneralText">Une application pour facilement gérer vos factures !</string>
+    <string name="addNewTagLabel">Nom du nouveau tag</string>
+    <string name="addNewTagButton">Ajouter</string>
+    <string name="selectTagLabelForNewInvoice">Choisissez un Tag :  </string>
+</resources>

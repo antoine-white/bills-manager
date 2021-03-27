@@ -3,7 +3,7 @@
 
     <!-- Invoice -->
     <!-- todo payment method -->
-    <string name="html_invoice"><![CDATA[
+    <string name="html_invoice" translatable="false"><![CDATA[
         <html>
             <head></head>
             <body>
@@ -28,10 +28,10 @@
     <string name="life">every day life</string>
     <string name="tran">transport/car</string>
     <string name="heal">health</string>
-    <string name="digi">digital</string>
+    <string name="digi" translatable="false">digital</string>
 
     <!-- Main Activity -->
-    <string name="version">v%1$s</string>
+    <string name="version" translatable="false">v%1$s</string>
     <string name="add">Add</string>
     <string name="edit_tags">Edit tags</string>
     <string name="saved_invoices">Saved Invoices</string>
@@ -41,33 +41,44 @@
 
     <!-- Saved Activity -->
     <string name="could_not_add">Could add not the selected tag</string>
-    <string name="date">%1$d/%2$d/%3$d</string>
-    <string name="amount">%1$.2f $</string>
+    <string name="date" translatable="false">%1$d/%2$d/%3$d</string>
+    <string name="amount" translatable="false">%1$.2f $</string>
     <string name="could_not_download">Could not download file</string>
     <string name="download_succ">Invoice downloaded successfully </string>
 
     <!-- tag Activity -->
-    <string name="tag_id">#%1$d</string>
+    <string name="tag_id" translatable="false">#%1$d</string>
     <string name="name_already">Could not add %1$s. Name already taken !</string>
     <string name="too_short">Could not add %1$s. Name too short !</string>
 
     <!-- Add activity -->
     <string name="addtitle">Add an Invoice </string>
     <string name="amountLabel">Amount :</string>
-    <string name="dateLabel"> Date : </string>
+    <string name="dateLabel" translatable="false"> Date : </string>
     <string name="radiobuttonIsCredit">Debtor</string>
     <string name="radiobuttonIsDebit">Creditor</string>
     <string name="destName">Recipient : </string>
     <string name="infoSuppLabel">Optional information</string>
     <string name="addressLabel">Address : </string>
     <string name="paymentLabel">Payment Type</string>
-    <string name="amountEditText" />
+    <string name="amountEditText" translatable="false" />
     <string name="personalNameLabel">Name : </string>
-    <string name="personalNameEdit" />
-    <string name="notesLabel">Notes : </string>
-    <string name="notesEditText" />
+    <string name="personalNameEdit" translatable="false" />
+    <string name="notesLabel" translatable="false">Notes : </string>
+    <string name="notesEditText" translatable="false" />
+    <string name="selectTagLabelForNewInvoice">Select a Tag : </string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
+
+
+    <!-- General information -->
+    <string name="appVersion">v0.1</string>
+    <string name="appGeneralText">An application to easily manage your invoices!</string>
+    <string name="addNewTagLabel">Name of the new tag</string>
+    <string name="addNewTagButton">Add</string>
+
 
 </resources>
+
