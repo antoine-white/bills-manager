@@ -36,9 +36,9 @@
 
             <TextView
                 android:id="@+id/AmountLabel"
-                android:layout_width="98dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="28dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:labelFor="@id/AmountEditText"
                 android:text="@string/amountLabel"
@@ -48,65 +48,66 @@
 
             <EditText
                 android:id="@+id/AmountEditText"
-                android:layout_width="152dp"
-                android:layout_height="42dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="number|numberDecimal"
                 android:text="@string/amountEditText"
+                app:layout_constraintBottom_toBottomOf="@+id/AmountLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/AmountLabel"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/AmountLabel" />
 
             <TextView
                 android:id="@+id/DateLabel"
-                android:layout_width="91dp"
-                android:layout_height="31dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="24dp"
                 android:labelFor="@id/editTextDate"
                 android:text="@string/dateLabel"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/AmountLabel"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/AmountLabel" />
 
             <EditText
                 android:id="@+id/editTextDate"
-                android:layout_width="139dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:autofillHints=""
-                android:ems="10"
-                android:inputType="date"
                 android:clickable="false"
                 android:cursorVisible="false"
+                android:ems="10"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/DateLabel"
-                app:layout_constraintTop_toBottomOf="@+id/AmountEditText" />
+                android:inputType="date"
+                app:layout_constraintBottom_toBottomOf="@+id/DateLabel"
+                app:layout_constraintEnd_toEndOf="@+id/AmountEditText"
+                app:layout_constraintStart_toStartOf="@+id/AmountEditText"
+                app:layout_constraintTop_toTopOf="@+id/DateLabel" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
-                android:layout_width="138dp"
+                android:layout_width="0dp"
                 android:layout_height="99dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="28dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+                app:layout_constraintStart_toStartOf="@+id/DateLabel"
                 app:layout_constraintTop_toBottomOf="@+id/DateLabel">
 
                 <RadioButton
                     android:id="@+id/radioButton"
-                    android:layout_width="123dp"
+                    android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:text="@string/radiobuttonIsCredit" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
-                    android:layout_width="126dp"
+                    android:layout_width="match_parent"
                     android:layout_height="51dp"
                     android:text="@string/radiobuttonIsDebit" />
 
@@ -116,8 +117,8 @@
                 android:id="@+id/DestNameLabel"
                 android:layout_width="111dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="36dp"
                 android:labelFor="@id/DestNameEdit"
                 android:text="@string/destName"
                 android:textSize="20sp"
@@ -143,33 +144,62 @@
                 android:layout_width="131dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="28dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="44dp"
                 android:text="@string/selectTagLabelForNewInvoice"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/DestNameLabel" />
 
             <Spinner
                 android:id="@+id/spinnerSelectTagForNewInvoice"
-                android:layout_width="187dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="28dp"
+                android:layout_width="167dp"
+                android:layout_height="56dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/SelectTagLabelForNewInvoice"
                 app:layout_constraintTop_toBottomOf="@+id/DestNameEdit" />
 
+            <ImageButton
+                android:id="@+id/AddButtonSelectTag"
+                android:layout_width="55dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.529"
+                app:layout_constraintStart_toEndOf="@+id/spinnerSelectTagForNewInvoice"
+                app:layout_constraintTop_toBottomOf="@+id/DestNameEdit"
+                app:srcCompat="@drawable/add" />
+
+            <ScrollView
+                android:id="@+id/scrollViewSelectedTags"
+                android:layout_width="266dp"
+                android:layout_height="141dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.765"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerSelectTagForNewInvoice">
+
+                <LinearLayout
+                    android:id="@+id/tags_selected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </ScrollView>
+
             <TextView
                 android:id="@+id/InfoSuppLabel"
                 android:layout_width="224dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="48dp"
                 android:text="@string/infoSuppLabel"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SelectTagLabelForNewInvoice" />
+                app:layout_constraintTop_toBottomOf="@+id/scrollViewSelectedTags" />
 
             <TextView
                 android:id="@+id/AddressLabel"

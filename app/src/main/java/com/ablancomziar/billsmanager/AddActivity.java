@@ -6,13 +6,20 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -20,8 +27,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -48,6 +57,9 @@ public class AddActivity extends AppCompatActivity {
 
     private Invoice invoice;
 
+
+    private ImageButton addTag;
+
     private  final Calendar myCalendar = Calendar.getInstance();
 
 
@@ -64,6 +76,7 @@ public class AddActivity extends AppCompatActivity {
         this.addButton = findViewById(R.id.AddInvoice);
         this.personalNameEdit = findViewById(R.id.PersonalNameEdit);
         this.notesEditText = findViewById(R.id.NotesEditText);
+        this.addTag = findViewById(R.id.AddButtonSelectTag);
 
 
         parseDate();
@@ -80,44 +93,65 @@ public class AddActivity extends AppCompatActivity {
 
         setSpinnerAdapter();
 
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                int requiredField = testRequiredField();
-                if(requiredField != 4 ){
-                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastfieldrequired), Toast.LENGTH_SHORT);
-                    toast.show();
-
-                } else {
-                    boolean iscredit = true;
-                    if((debtor.isChecked()))
-                        iscredit = false;
-
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
-                    try {
-                        Date date = sdf.parse(editTextDate.getText().toString());
-                        invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
-                        addOptionalInfo();
-
-                        a.AddInvoice(invoice);
-
-                        Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
-                        toast.show();
-                        Intent activity = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(activity);
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
+        addTag.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View v) {
+                  String str = spinner.getSelectedItem().toString();
+                  ArrayList<ITag> checklist = new ArrayList();
+                  for (ITag tag : available)
+                      if(tag.getName().equals(str)){
+                          selected.add(tag);
+                          checklist.add(tag);
+                          displaySelectedTag(checklist);
+                          return;
+                      }
+              }
         });
 
 
-    }
 
+        //spinner.setOnTouchListener(spinnerOnTouch);
+
+        //spinner.setOnKeyListener(spinnerOnKey);
+
+
+
+
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            int requiredField = testRequiredField();
+            if(requiredField != 4 ){
+                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastfieldrequired), Toast.LENGTH_SHORT);
+                toast.show();
+
+            } else {
+                boolean iscredit = true;
+                if((debtor.isChecked()))
+                    iscredit = false;
+
+
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
+                try {
+                    Date date = sdf.parse(editTextDate.getText().toString());
+                    invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
+                    addOptionalInfo();
+
+                    a.AddInvoice(invoice);
+
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
+                    toast.show();
+                    Intent activity = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(activity);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            }
+        });
+
+    }
 
 
     private void setSpinnerAdapter(){
@@ -129,8 +163,8 @@ public class AddActivity extends AppCompatActivity {
         spinner.setAdapter(spinnerArrayAdapter);
     }
 
+
     private int testRequiredField(){
-        boolean iscompleted;
         int count = 0;
 
         if(!this.amountEditText.getText().toString().equals(""))
@@ -156,13 +190,11 @@ public class AddActivity extends AppCompatActivity {
 
     private void parseDate(){
 
-
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -175,7 +207,6 @@ public class AddActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 new DatePickerDialog(AddActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -184,11 +215,9 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-
-
-
     private void addSpinnerPaymentType(){
         int pos = spinnerPaymentTypes.getSelectedItemPosition();
+
         switch(pos){
             case 0 :
                     invoice.addPayment(Payment.bankcard);
@@ -205,6 +234,54 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    private void displaySelectedTag( ArrayList<ITag> checklist){
+
+        ViewGroup group = findViewById(R.id.tags_selected);
+        group.removeAllViews();
+        for(ITag tag : selected){
+
+/*
+            for(int i = 0; i < checklist.size(); i++){
+                if(!checklist.get(i).getName().equals(tag)){
+                    Log.v("test_tag_selected", tag.getName());
+                    addToTagView(tag, getLayoutInflater(), group);
+                    checklist.add(tag);
+
+                }
+            }
+
+*/
+            addToTagView(tag, getLayoutInflater(), group);
+
+        }
+
+    }
+
+    private void addToTagView(ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
+        View view = layoutInflater.inflate(R.layout.tag_layout, parentLayout, false);
+        // In order to get the view we have to use the new view with text_layout in it
+        TextView textView = view.findViewById(R.id.tag_layout_text);
+        textView.setText(tag.getName());
+        if (tag.hasIcon()){
+            ImageView img = view.findViewById(R.id.tagImageView);
+            img.setImageDrawable(tag.getIcon());
+            img.setColorFilter(tag.getColor());
+        }
+
+        parentLayout.addView(view);
+    }
+
+    private void updateTagView(){
+        ViewGroup group = findViewById(R.id.tags_view_small);
+        group.removeAllViews();
+        for(ITag tag : selected)
+            addToTagView(tag,getLayoutInflater(),group);
+    }
+
+
+
+
+
     private void addOptionalInfo(){
         addSpinnerPaymentType();
         if(!this.notesEditText.equals(""))
@@ -212,6 +289,8 @@ public class AddActivity extends AppCompatActivity {
 
         if(!this.personalNameEdit.equals(""))
             invoice.addInvoiceName(this.personalNameEdit.getText().toString());
+
+
     }
 
 
