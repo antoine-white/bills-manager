@@ -160,35 +160,22 @@ public class StatsActivity extends AppCompatActivity {
         ViewGroup group = findViewById(R.id.graphics);
         group.removeAllViews();
         App a = (App) getApplication();
-        Float max = getMaxValue();
+        Float max = getMaxValue(values);
         for(Map.Entry<Integer,Float> entry : values.entrySet())
-            addIndividualGraphic(new Pair<>(a.getTagById(entry.getKey()),entry.getValue()),getLayoutInflater(),group);
+            addIndividualGraphic(new Pair<>(a.getTagById(entry.getKey()),entry.getValue()),getLayoutInflater(),group , max);
     }
 
-    private void addIndividualGraphic(Pair<ITag,Float> value, LayoutInflater layoutInflater, ViewGroup parentLayout ){
-        View view = layoutInflater.inflate(R.layout.small_tag_layout, parentLayout, false);
+    private void addIndividualGraphic(Pair<ITag,Float> value, LayoutInflater layoutInflater, ViewGroup parentLayout, float max){
+        View view = layoutInflater.inflate(R.layout.graphic_tag, parentLayout, false);
 
         // In order to get the view we have to use the new view with text_layout in it
-        TextView textView = view.findViewById(R.id.tag_layout_text);
-        textView.setText(tag.getName());
+        TextView textView = view.findViewById(R.id.tag_name_graph);
+        textView.setText(value.first.getName());
 
-        ImageButton button = view.findViewById(R.id.imageButton);
-        final ITag _tag = tag;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selected.remove(_tag);
-                updateTagView();
-                available.add(_tag);
-                setSpinnerAdapter();
-                updateInvoiceView();
-            }
-        });
-
-        if (tag.hasIcon()){
+        if (value.first.hasIcon()){
             ImageView img = view.findViewById(R.id.tagImageView);
-            img.setImageDrawable(tag.getIcon());
-            img.setColorFilter(tag.getColor());
+            img.setImageDrawable(value.first.getIcon());
+            img.setColorFilter(value.first.getColor());
         }
         parentLayout.addView(view);
     }
