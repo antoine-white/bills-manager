@@ -173,7 +173,7 @@ public class StatsActivity extends AppCompatActivity {
         textView.setText(value.first.getName());
 
         if (value.first.hasIcon()){
-            ImageView img = view.findViewById(R.id.tagImageView);
+            ImageView img = view.findViewById(R.id.imageViewTag);
             img.setImageDrawable(value.first.getIcon());
             img.setColorFilter(value.first.getColor());
         }

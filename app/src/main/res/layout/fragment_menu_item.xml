@@ -14,11 +14,14 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/hello_blank_fragment"
         android:textColor="?attr/actionMenuTextColor"
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +29,7 @@
         android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="8dp"
         android:foregroundTint="@color/colorPrimaryDark"
         android:src="@android:color/background_light"
         android:tint="@color/colorPrimaryDark"
