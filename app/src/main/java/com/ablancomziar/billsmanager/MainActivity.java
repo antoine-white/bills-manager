@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         return new MenuData[]{
                 new MenuData(R.drawable.add, getString(R.string.add),AddActivity.class),
                 new MenuData(R.drawable.tags, getString(R.string.edit_tags),TagActivity.class),
-                // todo : better word !!
                 new MenuData(R.drawable.report, getString(R.string.saved_invoices),SavedActivity.class),
-                new MenuData(R.drawable.chart, getString(R.string.stats),MainActivity.class),
+                new MenuData(R.drawable.chart, getString(R.string.stats),StatsActivity.class),
                 new MenuData(R.drawable.privacy, getString(R.string.policies),MainActivity.class),
         };
     }

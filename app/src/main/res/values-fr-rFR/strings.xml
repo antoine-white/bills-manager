@@ -24,11 +24,15 @@
     <string name="infoSuppLabel">Informations optionnelles</string>
     <string name="addressLabel">"Adresse : "</string>
     <string name="paymentLabel">Moyens de paiment</string>
-    <string name="personalNameLabel">"Nom : "</string>
+    <string name="personalNameLabel">"Nom : "</string><string name="toastfieldrequired">Champs obligatoires non complets </string>
+    <string name="toastinvoicecompleted"> Facture bien ajoutée !  </string>
+    <string name="butAddInvoice">Ajouter</string>
+
 
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">Une application pour facilement gérer vos factures !</string>
     <string name="addNewTagLabel">Nom du nouveau tag</string>
     <string name="addNewTagButton">Ajouter</string>
     <string name="selectTagLabelForNewInvoice">Choisissez un Tag :  </string>
+    <string name="format_date">dd/MM/yy</string>
 </resources>

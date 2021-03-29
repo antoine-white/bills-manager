@@ -21,7 +21,6 @@
         ]]></string>
 
 
-
     <!-- default icon name -->
     <string name="alim">food</string>
     <string name="home">home/rent</string>
@@ -47,6 +46,9 @@
     <string name="download_succ">Invoice downloaded successfully </string>
 
     <!-- tag Activity -->
+    <string name="format_date" >MM/dd/yy</string>
+
+    <!-- tag Activity -->
     <string name="tag_id" translatable="false">#%1$d</string>
     <string name="name_already">Could not add %1$s. Name already taken !</string>
     <string name="too_short">Could not add %1$s. Name too short !</string>
@@ -67,10 +69,13 @@
     <string name="notesLabel" translatable="false">Notes : </string>
     <string name="notesEditText" translatable="false" />
     <string name="selectTagLabelForNewInvoice">Select a Tag : </string>
+    <string name="toastfieldrequired">Require fields not complete </string>
+    <string name="toastinvoicecompleted">Well added invoice! </string>
+
+    <string name="butAddInvoice">Add</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-
 
 
     <!-- General information -->
