@@ -205,6 +205,7 @@ public class App extends Application {
         return t;
     }
 
+    //todo
     @SuppressLint("NewApi")
     private void saveCustomTags(){
         List<String> s = new ArrayList<>();
@@ -220,7 +221,6 @@ public class App extends Application {
         }
     }
 
-    @SuppressLint("NewApi")
     private void saveInvoices(){
         try {
             FileOutputStream fos = this.openFileOutput(FILENAME_INCOICES, Context.MODE_PRIVATE);

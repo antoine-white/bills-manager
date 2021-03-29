@@ -1,10 +1,14 @@
 package com.ablancomziar.billsmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.util.Pair;
 
+import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +18,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -110,12 +116,34 @@ public class StatsActivity extends AppCompatActivity {
         return cal;
     }
 
-    public static <T> Float getMaxValue(Map<T,Float> map){
+    /*public static <T> Float getMaxValue(Map<T,Float> map){
         Float maxValue = Float.MIN_VALUE;
         for(T i : map.keySet())
             if(map.get(i) > maxValue)
                 maxValue = map.get(i);
         return maxValue;
+    }*/
+
+    public static List<Pair<Integer,Float>> sort(Map<Integer,Float> map){
+        List<Pair<Integer,Float>> l = new ArrayList<>();
+        for(Map.Entry<Integer,Float> entry : map.entrySet())
+            l.add(new Pair<>(entry.getKey(),entry.getValue()));
+        List<Pair<Integer,Float>> res = new ArrayList<>();
+        while(l.size() > 0){
+            Pair<Integer, Float> max_ = max(l);
+            l.remove(max_);
+            res.add(max_);
+        }
+        return res;
+    }
+
+    private static Pair<Integer, Float> max(List<Pair<Integer, Float>> l) {
+        Pair<Integer, Float> max = l.get(0);
+        for (int i = 1; i < l.size(); i++) {
+            if(l.get(i).second > max.second)
+                max = l.get(i);
+        }
+        return max;
     }
 
     private void updateLabel(boolean start) {
@@ -146,12 +174,13 @@ public class StatsActivity extends AppCompatActivity {
     private Map<Integer,Float> getTagAndAmount(List<Invoice> invoices){
         Map<Integer,Float> res = new HashMap<>();
         for(Invoice i : invoices){
-            for(int id : i.getTags()){
-                if(res.containsKey(id)){
-                    res.put(id,res.get(id) + i.getAmount());
-                } else
-                    res.put(id,i.getAmount());
-            }
+            if(i.getTags() != null)
+                for(int id : i.getTags()){
+                    if(res.containsKey(id)){
+                        res.put(id,res.get(id) + i.getAmount());
+                    } else
+                        res.put(id,i.getAmount());
+                }
         }
         return res;
     }
@@ -160,9 +189,9 @@ public class StatsActivity extends AppCompatActivity {
         ViewGroup group = findViewById(R.id.graphics);
         group.removeAllViews();
         App a = (App) getApplication();
-        Float max = getMaxValue(values);
-        for(Map.Entry<Integer,Float> entry : values.entrySet())
-            addIndividualGraphic(new Pair<>(a.getTagById(entry.getKey()),entry.getValue()),getLayoutInflater(),group , max);
+        List<Pair<Integer,Float>> l = sort(values);
+        for(Pair<Integer,Float> p : l)
+            addIndividualGraphic(new Pair<>(a.getTagById(p.first),p.second),getLayoutInflater(),group , l.get(0).second);
     }
 
     private void addIndividualGraphic(Pair<ITag,Float> value, LayoutInflater layoutInflater, ViewGroup parentLayout, float max){
@@ -172,8 +201,22 @@ public class StatsActivity extends AppCompatActivity {
         TextView textView = view.findViewById(R.id.tag_name_graph);
         textView.setText(value.first.getName());
 
+
+        TextView amount = view.findViewById(R.id.amount);
+        amount.setText(getString(R.string.amount,value.second));
+
+
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
+        ObjectAnimator.ofInt(progressBar, "progress",
+                0, (int)((value.second / max ) * 100f))
+                .setDuration(2000)
+                .start();
+
+        //progressBar.setProgress((int)((value.second / max ) * 100f));
+        //progressBar.getProgressDrawable().setColorFilter(value.first.getColor(), PorterDuff.Mode.SRC_IN);
+
         if (value.first.hasIcon()){
-            ImageView img = view.findViewById(R.id.tagImageView);
+            ImageView img = view.findViewById(R.id.imageViewTag);
             img.setImageDrawable(value.first.getIcon());
             img.setColorFilter(value.first.getColor());
         }
