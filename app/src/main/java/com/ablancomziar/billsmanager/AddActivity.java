@@ -59,6 +59,9 @@ public class AddActivity extends AppCompatActivity {
 
 
     private ImageButton addTag;
+    private ArrayList<ITag> selectedList;
+    //private int[] tagIds;
+
 
     private  final Calendar myCalendar = Calendar.getInstance();
 
@@ -78,6 +81,7 @@ public class AddActivity extends AppCompatActivity {
         this.notesEditText = findViewById(R.id.NotesEditText);
         this.addTag = findViewById(R.id.AddButtonSelectTag);
 
+        this.selectedList = new ArrayList<>();
 
         parseDate();
 
@@ -95,15 +99,17 @@ public class AddActivity extends AppCompatActivity {
 
         addTag.setOnClickListener(new View.OnClickListener() {
               public void onClick(View v) {
-                  String str = spinner.getSelectedItem().toString();
-                  ArrayList<ITag> checklist = new ArrayList();
-                  for (ITag tag : available)
-                      if(tag.getName().equals(str)){
-                          selected.add(tag);
-                          checklist.add(tag);
-                          displaySelectedTag(checklist);
-                          return;
-                      }
+              String str = spinner.getSelectedItem().toString();
+              ArrayList<ITag> checklist = new ArrayList();
+              for (ITag tag : available)
+                  if(tag.getName().equals(str)){
+                      selected.add(tag);
+                      checklist.add(tag);
+                      displaySelectedTag();
+                      return;
+                  }
+
+
               }
         });
 
@@ -112,7 +118,6 @@ public class AddActivity extends AppCompatActivity {
         //spinner.setOnTouchListener(spinnerOnTouch);
 
         //spinner.setOnKeyListener(spinnerOnKey);
-
 
 
 
@@ -137,6 +142,16 @@ public class AddActivity extends AppCompatActivity {
                     addOptionalInfo();
 
                     a.AddInvoice(invoice);
+
+
+                    int cpt = 0;
+                    int[] tagIds = new int[selected.size()];
+                    for(ITag tag : selected){
+                        tagIds[cpt] = tag.getId();
+                        Log.v("test_tag_id_size", selected.get(cpt).getName());
+                        cpt ++;
+                    }
+                    invoice.addTagsId(tagIds);
 
                     Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
                     toast.show();
@@ -234,11 +249,12 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    private void displaySelectedTag( ArrayList<ITag> checklist){
+    private void displaySelectedTag(){
 
         ViewGroup group = findViewById(R.id.tags_selected);
         group.removeAllViews();
-        for(ITag tag : selected){
+        boolean istwice = false;
+        for(ITag tag : selected) {
 
 /*
             for(int i = 0; i < checklist.size(); i++){
@@ -251,17 +267,58 @@ public class AddActivity extends AppCompatActivity {
             }
 
 */
-            addToTagView(tag, getLayoutInflater(), group);
+            if(this.selectedList.size() > 0 ){
+                for (ITag tag2 : this.selectedList) {
+                    if (tag2.getName().equals(tag)) {
+                        istwice = true;
+                    }
+                }
+            }
+            if(this.selectedList.size() == 0){
+                addToTagView(tag, getLayoutInflater(), group);
+                this.selectedList.add(tag);
+                Log.v("test_tag_added_size_0", selectedList.get(selectedList.size()-1).getName());
+            }
+            else if (!istwice){
+                addToTagView(tag, getLayoutInflater(), group);
+                this.selectedList.add(tag);
+                Log.v("test_tag_added_size_0", selectedList.get(selectedList.size()-1).getName());
+            }
+            else {
+                Toast toast = Toast.makeText(getApplicationContext(),"Tag already selected", Toast.LENGTH_SHORT);
+                toast.show();
+            }
 
         }
 
     }
+
 
     private void addToTagView(ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
         View view = layoutInflater.inflate(R.layout.tag_layout, parentLayout, false);
         // In order to get the view we have to use the new view with text_layout in it
         TextView textView = view.findViewById(R.id.tag_layout_text);
         textView.setText(tag.getName());
+
+
+        ImageButton button = view.findViewById(R.id.imageButton);
+        final ITag _tag = tag;
+/*
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selected.remove(_tag);
+                ViewGroup group = findViewById(R.id.tags_view_small);
+                group.removeAllViews();
+                for(ITag tag : selected)
+                    addToTagView(tag,getLayoutInflater(),group);
+                available.add(_tag);
+                setSpinnerAdapter();
+
+            }
+        });
+*/
+
         if (tag.hasIcon()){
             ImageView img = view.findViewById(R.id.tagImageView);
             img.setImageDrawable(tag.getIcon());
@@ -270,16 +327,6 @@ public class AddActivity extends AppCompatActivity {
 
         parentLayout.addView(view);
     }
-
-    private void updateTagView(){
-        ViewGroup group = findViewById(R.id.tags_view_small);
-        group.removeAllViews();
-        for(ITag tag : selected)
-            addToTagView(tag,getLayoutInflater(),group);
-    }
-
-
-
 
 
     private void addOptionalInfo(){

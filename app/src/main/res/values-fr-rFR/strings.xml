@@ -16,14 +16,14 @@
     <string name="download_succ">Téléchargement impossible</string>
     <string name="name_already">Ajout de %1$s impossible. Nom déjà pris</string>
     <string name="too_short">Ajout de %1$s impossible. Nom trop court</string>
-    <string name="addtitle">Ajouter une facture</string>
+    <string name="addtitle">Ajoutez une facture</string>
     <string name="amountLabel">"Somme : "</string>
-    <string name="radiobuttonIsCredit">"Débiteur : "</string>
-    <string name="radiobuttonIsDebit">"Créditeur : "</string>
-    <string name="destName">"Destinataire : "</string>
+    <string name="radiobuttonIsCredit">"Débiteur </string>
+    <string name="radiobuttonIsDebit">"Créditeur</string>
+    <string name="destName">Destinataire :</string>
     <string name="infoSuppLabel">Informations optionnelles</string>
     <string name="addressLabel">"Adresse : "</string>
-    <string name="paymentLabel">Moyens de paiment</string>
+    <string name="paymentLabel">Moyens de paiement</string>
     <string name="personalNameLabel">"Nom : "</string><string name="toastfieldrequired">Champs obligatoires non complets </string>
     <string name="toastinvoicecompleted"> Facture bien ajoutée !  </string>
     <string name="butAddInvoice">Ajouter</string>
@@ -33,6 +33,9 @@
     <string name="appGeneralText">Une application pour facilement gérer vos factures !</string>
     <string name="addNewTagLabel">Nom du nouveau tag</string>
     <string name="addNewTagButton">Ajouter</string>
-    <string name="selectTagLabelForNewInvoice">Choisissez un Tag :  </string>
+    <string name="selectTagLabelForNewInvoice">Choisissez un ou des Tag :  </string>
     <string name="format_date">dd/MM/yy</string>
+    <string name="addResearchTag">Ajoutez un tag à la recherche</string>
+    <string name="addButtonResearchTag">Ajouter</string>
+
 </resources>

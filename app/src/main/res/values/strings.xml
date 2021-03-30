@@ -67,7 +67,7 @@
     <string name="personalNameEdit" translatable="false" />
     <string name="notesLabel" translatable="false">Notes : </string>
     <string name="notesEditText" translatable="false" />
-    <string name="selectTagLabelForNewInvoice">Select a Tag : </string>
+    <string name="selectTagLabelForNewInvoice">Select one or many Tag : </string>
     <string name="toastfieldrequired">Require fields not complete </string>
     <string name="toastinvoicecompleted">Well added invoice! </string>
 
@@ -82,6 +82,8 @@
     <string name="appGeneralText">An application to easily manage your invoices!</string>
     <string name="addNewTagLabel">Name of the new tag</string>
     <string name="addNewTagButton">Add</string>
+    <string name="addResearchTag">Add a tag to the research</string>
+    <string name="addButtonResearchTag">Add</string>
 
 
 </resources>
