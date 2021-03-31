@@ -93,7 +93,7 @@ public class AddActivity extends AppCompatActivity {
         selected = new ArrayList<>();
 
 
-        final App a = (App) getApplication();
+        final ITagHandler a = ((App) getApplication()).getTagHandler();
 
 
         available = a.getTags();
@@ -123,7 +123,7 @@ public class AddActivity extends AppCompatActivity {
         //spinner.setOnKeyListener(spinnerOnKey);
 
 
-
+        final IInvoiceHandler invoiceHandler = ((App) getApplication()).getInvoiceHandler();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -144,7 +144,7 @@ public class AddActivity extends AppCompatActivity {
                     invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
                     addOptionalInfo();
 
-                    a.AddInvoice(invoice);
+                    invoiceHandler.AddInvoice(invoice);
 
 
                     int cpt = 0;

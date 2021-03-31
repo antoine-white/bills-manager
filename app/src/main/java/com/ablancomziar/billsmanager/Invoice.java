@@ -1,5 +1,7 @@
 package com.ablancomziar.billsmanager;
 
+import android.content.Context;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
@@ -94,22 +96,22 @@ public final class Invoice implements Serializable {
     }
 
     //todo traduct
-    public String toHTML(App app){
+    public String toHTML(Context ctx, ITagHandler tagHandler){
 
         String tagStr = "";
         for (int id : tags){
-            ITag tag = app.getTagById(id);
+            ITag tag = tagHandler.getTagById(id);
             if (tag != null)
                 tagStr += "<li>" + tag.getName() + "</li>";
         }
 
-        return app.getString(R.string.html_invoice,
+        return ctx.getString(R.string.html_invoice,
                 name,
                 amount,
                 Boolean.toString(isCredit),
                 invoiceDate.toString(),
                 tagStr,
-                address == null ? "" : address.getFormattedAddress(app),
+                address == null ? "" : address.getFormattedAddress(ctx),
                 personalName,
                 notes);
     }

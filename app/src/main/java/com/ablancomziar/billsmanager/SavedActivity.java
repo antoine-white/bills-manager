@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimatedStateListDrawable;
 import android.net.Uri;
@@ -22,9 +23,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -45,33 +44,10 @@ public class SavedActivity extends AppCompatActivity {
 
         spinner = findViewById(R.id.spinner_tags);
 
-        App a = (App) getApplication();
+        final IInvoiceHandler a = ((App) getApplication()).getInvoiceHandler();
+        final ITagHandler tagHandler = ((App) getApplication()).getTagHandler();
 
-        /*
-        a.addTag("Uber Eat");
-        a.addTag("Delivroo");
-        a.addTag("A emporter");
-        a.addTag("Mc do");
-        a.addTag("Burger king");
-        a.addTag("KFC");
-        a.addTag("Jeu vidéo");
-
-        Invoice i = new Invoice(29,new Date(),true,"Uber Eat (Mac Do)");
-        i.addTagsId(new int[]{0,11,13,14});
-
-        Log.d(App.getAppTag(),"got tags in invoice : " + i.getTags().toString());
-        a.AddInvoice(i);
-
-        Invoice i2 = new Invoice(19,new Date(),true,"Delivroo (Mac Do)");
-        i2.addTagsId(new int[]{0,12,13,15});
-        a.AddInvoice(i2);
-
-
-        Invoice i3 = new Invoice(159.26f,new Date(),true,"Skin cs go");
-        i3.addTagsId(new int[]{05,17});
-        a.AddInvoice(i3);*/
-
-        available = a.getTags();
+        available = tagHandler.getTags();
 
         setSpinnerAdapter();
         Button b = findViewById(R.id.add_button_saved);
@@ -184,7 +160,7 @@ public class SavedActivity extends AppCompatActivity {
         TextView textView = view.findViewById(R.id.name);
         textView.setText(invoice.getName());
 
-        final App a = (App) getApplication();
+        final IInvoiceHandler a = ((App) getApplication()).getInvoiceHandler();
 
 
         ImageButton button = view.findViewById(R.id.download);
@@ -207,7 +183,7 @@ public class SavedActivity extends AppCompatActivity {
                 File file = a.writeInvoiceDownload(invoice,SavedActivity.this);
                 if (file != null){
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    Uri uri = FileProvider.getUriForFile(a, a.getPackageName() + ".provider", file);
+                    Uri uri = FileProvider.getUriForFile(getApplicationContext(), getPackageName() + ".provider", file);
                     intent.setDataAndType(uri, "text/html");
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);

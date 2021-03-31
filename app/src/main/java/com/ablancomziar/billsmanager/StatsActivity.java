@@ -158,7 +158,7 @@ public class StatsActivity extends AppCompatActivity {
     private void generate(){
         Log.d(App.getAppTag(),"got date start : " + startCalendar);
         Log.d(App.getAppTag(),"got date end : " + endCalendar);
-        App a = (App) getApplication();
+        final IInvoiceHandler a = ((App) getApplication()).getInvoiceHandler();
         List<Invoice> all = a.getInvoices();
         List<Invoice> btwDate = new ArrayList<>();
         for(Invoice i : all){
@@ -188,10 +188,10 @@ public class StatsActivity extends AppCompatActivity {
     private void updateGraphicView(Map<Integer,Float> values){
         ViewGroup group = findViewById(R.id.graphics);
         group.removeAllViews();
-        App a = (App) getApplication();
+        final ITagHandler tagHandler = ((App) getApplication()).getTagHandler();
         List<Pair<Integer,Float>> l = sort(values);
         for(Pair<Integer,Float> p : l)
-            addIndividualGraphic(new Pair<>(a.getTagById(p.first),p.second),getLayoutInflater(),group , l.get(0).second);
+            addIndividualGraphic(new Pair<>(tagHandler.getTagById(p.first),p.second),getLayoutInflater(),group , l.get(0).second);
     }
 
     private void addIndividualGraphic(Pair<ITag,Float> value, LayoutInflater layoutInflater, ViewGroup parentLayout, float max){

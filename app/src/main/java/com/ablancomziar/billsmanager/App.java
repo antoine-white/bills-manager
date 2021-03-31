@@ -10,27 +10,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.io.Reader;
-import java.lang.reflect.Array;
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetDecoder;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,33 +30,31 @@ import java.util.Scanner;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class App extends Application {
+
+//handle way too much thing should be at least splitted into sub Interfaces
+public class App extends Application  implements  IInvoiceHandler, ITagHandler{
 
     private static final String INVOICE_FILE_START = "BILLS_MANAGER_INVOICE_";
     private static String APP_TAG = "tagg";
-    private static Context mContext;
-    private static String filename = "test6";
+    private static String FILENAME_TAGS = "test6";
     private static final String FILENAME_INCOICES = "invoices8";
+    private static final int LAST_ID_DEFAULT = 10;
+
+    
     private List<ITag> tags;
     private List<Invoice> invoices;
     private List<CustomTag> customTags;
-    private File file;
-    private File fileInvoices;
     private int currentLastId;
-    private static final int LAST_ID_DEFAULT = 10;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
     public static void verifyStoragePermissions(Activity activity) {
-        // Vérifie si nous avons les droits d'écriture
         int permission = ActivityCompat.checkSelfPermission(activity,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permission != PackageManager.PERMISSION_GRANTED) {
-            // Aie, il faut les demander àl'utilisateur
             ActivityCompat.requestPermissions(
                     activity,
                     PERMISSIONS_STORAGE,
@@ -86,14 +74,22 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        handleTagFile();
+        handleInvoiceFile();
+    }
 
+    public ITagHandler getTagHandler(){
+        return this;
+    }
 
+    public IInvoiceHandler getInvoiceHandler(){
+        return this;
+    }
 
-        // ============================ //
-
+    private void handleTagFile() {
         invoices = new ArrayList<>();
         customTags = new ArrayList<>();
-        file = new File(this.getFilesDir(), filename);
+        File file = new File(this.getFilesDir(), FILENAME_TAGS);
         Log.println(Log.DEBUG, APP_TAG, "TAG FILE!");
         if (!file.exists()) {
             try {
@@ -132,10 +128,11 @@ public class App extends Application {
 
         }
 
-        // ---------------------------- //
+    }
 
+    private void handleInvoiceFile(){
         Log.println(Log.DEBUG, APP_TAG, "INVOICE FILE!");
-        fileInvoices = new File(this.getFilesDir(), FILENAME_INCOICES);
+        File fileInvoices = new File(this.getFilesDir(), FILENAME_INCOICES);
         if (!fileInvoices.exists()) {
             try {
                 fileInvoices.createNewFile();
@@ -162,27 +159,29 @@ public class App extends Application {
             }
 
         }
-        // ---------------------------- //
-        mContext = this;
     }
 
     public static String getAppTag() {
         return APP_TAG;
     }
 
+    @Override
     public List<ITag> getTags() {
         return  (List<ITag>) (((ArrayList<ITag>)tags).clone());
     }
 
+    @Override
     public List<Invoice> getInvoices() {
         return invoices;
     }
 
+    @Override
     public void AddInvoice(Invoice i){
         this.invoices.add(i);
         saveInvoices();
     }
 
+    @Override
     public ITag getTagById(int id){
         //tags.stream().filter(e -> e.getId() == id);
         for (ITag t : tags)
@@ -191,6 +190,7 @@ public class App extends Application {
         return null;
     }
 
+    @Override
     public ITag addTag(String name){
         currentLastId++;
         Random r = new Random();
@@ -205,15 +205,18 @@ public class App extends Application {
         return t;
     }
 
-    //todo
-    @SuppressLint("NewApi")
+
     private void saveCustomTags(){
         List<String> s = new ArrayList<>();
         s.add(customTags.get(customTags.size()-1).getId() + "");
         for (CustomTag c : this.customTags)
             s.add(c.getId() + "," + c.getName() + "," + c.getColor());
         try {
-            Files.write(Paths.get(file.getPath()),s);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(FILENAME_TAGS, Context.MODE_PRIVATE));
+            for(String str: s)
+                outputStreamWriter.write(str);
+            outputStreamWriter.close();
+            //Files.write(Paths.get(file.getPath()),s);
             Log.println(Log.DEBUG, APP_TAG, "Write on file successfull : " + s);
         } catch (IOException e) {
             Log.println(Log.DEBUG, APP_TAG, "could not write on file !");
@@ -235,11 +238,7 @@ public class App extends Application {
         }
     }
 
-    public static Context getContext() {
-        return mContext;
-    }
-
-
+    @Override
     public File writeInvoiceDownload(Invoice i, Activity activity) {
         verifyStoragePermissions(activity);
         File folder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
@@ -247,7 +246,7 @@ public class App extends Application {
         File fileout = new File(folder, filename);
         try (FileOutputStream fos = new FileOutputStream(fileout)) {
             PrintStream ps = new PrintStream(fos);
-            ps.print(i.toHTML(this));
+            ps.print(i.toHTML(this,this));
             ps.close();
         } catch (FileNotFoundException e) {
             Log.e(TAG,"File not found",e);

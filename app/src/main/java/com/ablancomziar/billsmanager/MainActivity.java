@@ -67,15 +67,15 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         fragmentTransaction.commit();
 
 
-
+/*
 
         App a = (App) getApplication();
         /*
         a.AddInvoice(new Invoice(10,new Date(),true,"burgerKing"));
         a.AddInvoice(new Invoice(12,new Date(),true,"McDo"));
-        a.AddInvoice(new Invoice(10,new Date(),true,"KFC"));*/
+        a.AddInvoice(new Invoice(10,new Date(),true,"KFC"));
         for(Invoice i : a.getInvoices())
-            Log.d(App.getAppTag(),i.toString());
+            Log.d(App.getAppTag(),i.toString());*/
     }
 
 

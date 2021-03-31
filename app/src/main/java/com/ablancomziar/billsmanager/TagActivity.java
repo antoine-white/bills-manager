@@ -37,7 +37,7 @@ public class TagActivity extends AppCompatActivity {
             }
         });
 
-        App a = (App) getApplication();
+        final ITagHandler a = ((App) getApplication()).getTagHandler();
         List<ITag> tags = a.getTags();
         for (ITag tag : tags){
             addToList(tag,getLayoutInflater(),(ViewGroup)findViewById(R.id.tag_list));
@@ -51,7 +51,7 @@ public class TagActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
             return;
         }
-        App a = (App) getApplication();
+        final ITagHandler a = ((App) getApplication()).getTagHandler();
         ITag t = a.addTag(name);
         if(t == null){
             Toast.makeText(this, getString(R.string.name_already,name),
