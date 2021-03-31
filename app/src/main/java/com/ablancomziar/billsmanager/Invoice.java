@@ -95,15 +95,16 @@ public final class Invoice implements Serializable {
                 '}';
     }
 
-    //todo traduct
+
     public String toHTML(Context ctx, ITagHandler tagHandler){
 
         String tagStr = "";
-        for (int id : tags){
-            ITag tag = tagHandler.getTagById(id);
-            if (tag != null)
-                tagStr += "<li>" + tag.getName() + "</li>";
-        }
+        if (tags != null)
+            for (int id : tags){
+                ITag tag = tagHandler.getTagById(id);
+                if (tag != null)
+                    tagStr += "<li>" + tag.getName() + "</li>";
+            }
 
         return ctx.getString(R.string.html_invoice,
                 name,
