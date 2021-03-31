@@ -27,7 +27,8 @@
     <string name="life">every day life</string>
     <string name="tran">transport/car</string>
     <string name="heal">health</string>
-    <string name="digi" translatable="false">digital</string>
+    <string name="digi" >digital</string>
+    <string name="unlabeled" >Unlabeled</string>
 
     <!-- Main Activity -->
     <string name="version" translatable="false">v%1$s</string>
@@ -73,8 +74,6 @@
 
     <string name="butAddInvoice">Add</string>
 
-
-
     <!-- General information -->
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">An application to easily manage your invoices!</string>
@@ -88,6 +87,16 @@
     <string name="selection_end_date">Selection end date</string>
     <string name="generate">Generate</string>
     <string name="name_of_the_new_tag">Name of the new tag</string>
+    <string name="label_num_address">Num : </string>
+    <string name="address_button">display address</string>
+    <string name="address_button_hide">hide address</string>
+    <string name="street_address">Street :</string>
+    <string name="street_address_edit" translatable="false" />
+    <string name="city_address">City :</string>
+    <string name="city_address_edit" translatable="false" />
+    <string name="state_address">State :</string>
+    <string name="state_address_edit" translatable="false" />
+    <string name="toast_address_completed"> You have started the address but it is not complete</string>
 
 
 </resources>

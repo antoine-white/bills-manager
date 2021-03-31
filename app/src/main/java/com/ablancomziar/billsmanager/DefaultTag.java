@@ -9,6 +9,7 @@ public final class DefaultTag implements ITag {
     private Drawable icon;
     private final int id;
     private int color;
+    public static final int ID_NO_LABEL = 6;
 
     private DefaultTag(String name, Drawable Icon, int id, int c) {
         this.name = name;
@@ -24,7 +25,8 @@ public final class DefaultTag implements ITag {
             new DefaultTag(ctx.getString(R.string.life),ctx.getDrawable(R.drawable.coffe),2, Color.rgb(200, 0, 200)),
             new DefaultTag(ctx.getString(R.string.tran),ctx.getDrawable(R.drawable.car),3, Color.rgb(0, 100, 100)),
             new DefaultTag(ctx.getString(R.string.heal),ctx.getDrawable(R.drawable.health),4 , Color.rgb(255, 0, 0)),
-            new DefaultTag(ctx.getString(R.string.digi),ctx.getDrawable(R.drawable.digital),5 ,Color.rgb(0, 0, 255))
+            new DefaultTag(ctx.getString(R.string.digi),ctx.getDrawable(R.drawable.digital),5 ,Color.rgb(0, 0, 255)),
+            new DefaultTag(ctx.getString(R.string.unlabeled),ctx.getDrawable(R.drawable.no_label),6 ,Color.rgb(0, 0, 0))
         };
     }
 

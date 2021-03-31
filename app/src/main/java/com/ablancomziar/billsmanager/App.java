@@ -1,13 +1,11 @@
 package com.ablancomziar.billsmanager;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import androidx.core.app.ActivityCompat;
@@ -20,15 +18,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 //handle way too much thing should be at least splitted into sub Interfaces
@@ -40,7 +35,7 @@ public class App extends Application  implements  IInvoiceHandler, ITagHandler{
     private static final String FILENAME_INCOICES = "invoices8";
     private static final int LAST_ID_DEFAULT = 10;
 
-    
+
     private List<ITag> tags;
     private List<Invoice> invoices;
     private List<CustomTag> customTags;
@@ -216,7 +211,6 @@ public class App extends Application  implements  IInvoiceHandler, ITagHandler{
             for(String str: s)
                 outputStreamWriter.write(str);
             outputStreamWriter.close();
-            //Files.write(Paths.get(file.getPath()),s);
             Log.println(Log.DEBUG, APP_TAG, "Write on file successfull : " + s);
         } catch (IOException e) {
             Log.println(Log.DEBUG, APP_TAG, "could not write on file !");
@@ -249,10 +243,10 @@ public class App extends Application  implements  IInvoiceHandler, ITagHandler{
             ps.print(i.toHTML(this,this));
             ps.close();
         } catch (FileNotFoundException e) {
-            Log.e(TAG,"File not found",e);
+            Log.e(APP_TAG,"File not found",e);
             return null;
         } catch (IOException e) {
-            Log.e(TAG,"Error I/O",e);
+            Log.e(APP_TAG,"Error I/O",e);
             return null;
         }
         return fileout;
