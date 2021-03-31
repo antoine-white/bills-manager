@@ -226,7 +226,6 @@ public class AddActivity extends AppCompatActivity {
         if(!this.destNameEdit.getText().toString().equals(""))
             count ++;
 
-
         return count;
     }
 
@@ -266,7 +265,6 @@ public class AddActivity extends AppCompatActivity {
 
 
     private void displaySelectedTag(){
-
         ViewGroup group = findViewById(R.id.tags_selected);
         group.removeAllViews();
         for(ITag tag : selected)
@@ -279,7 +277,6 @@ public class AddActivity extends AppCompatActivity {
         // In order to get the view we have to use the new view with text_layout in it
         TextView textView = view.findViewById(R.id.tag_layout_text);
         textView.setText(tag.getName());
-
 
         ImageButton button = view.findViewById(R.id.imageButton);
         final ITag _tag = tag;
@@ -306,29 +303,26 @@ public class AddActivity extends AppCompatActivity {
 
     private void addOptionalInfo(){
         addSpinnerPaymentType();
-        if(!this.notesEditText.equals(""))
+        if(!this.notesEditText.getText().toString().equals(""))
             invoice.addNotes(this.notesEditText.getText().toString());
 
-        if(!this.personalNameEdit.equals(""))
+        if(!this.personalNameEdit.getText().toString().equals(""))
             invoice.addInvoiceName(this.personalNameEdit.getText().toString());
-/*
-        Address a;
-        if((!this.numAddress.equals(""))&&(!this.streetAddress.equals(""))&&(!this.cityAddress.equals(""))&&(!this.stateAddress.equals(""))){
+
+        if((!this.numAddress.getText().toString().equals(""))&&
+                (!this.streetAddress.getText().toString().equals(""))&&
+                (!this.cityAddress.getText().toString().equals(""))&&
+                (!this.stateAddress.getText().toString().equals("")))
+        {
             int num = Integer.parseInt(this.numAddress.getText().toString());
             String street = this.streetAddress.getText().toString();
             String city = this.cityAddress.getText().toString();
             String state = this.stateAddress.getText().toString();
-            a = new Address(num,street,city,state);
-
-        } else {
-            a = new Address(-1,"","","");
-
+            Address a = new Address(num, street, city, state);
+            invoice.addAddress(a);
         }
-
-        invoice.addAddress(a);
-*/
-
     }
+
 
     private void addSpinnerPaymentType(){
         int pos = spinnerPaymentTypes.getSelectedItemPosition();
@@ -352,8 +346,8 @@ public class AddActivity extends AppCompatActivity {
 
     private void setVisibilityAddress(View v){
         if(this.isVisible){
-            this.numAddress.setVisibility(v.GONE);
-            this.labelNumAddress.setVisibility(v.GONE);
+            this.numAddress.setVisibility(View.GONE);
+            this.labelNumAddress.setVisibility(View.GONE);
             this.streetAddress.setVisibility(View.GONE);
             this.labelStreetAddress.setVisibility(View.GONE);
             this.cityAddress.setVisibility(View.GONE);
@@ -364,8 +358,8 @@ public class AddActivity extends AppCompatActivity {
             this.isVisible = false;
         }
         else {
-            this.numAddress.setVisibility(v.VISIBLE);
-            this.labelNumAddress.setVisibility(v.VISIBLE);
+            this.numAddress.setVisibility(View.VISIBLE);
+            this.labelNumAddress.setVisibility(View.VISIBLE);
             this.streetAddress.setVisibility(View.VISIBLE);
             this.labelStreetAddress.setVisibility(View.VISIBLE);
             this.cityAddress.setVisibility(View.VISIBLE);

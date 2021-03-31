@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/AmountLabel"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginBottom="8dp"
@@ -103,21 +103,20 @@
 
             <TextView
                 android:id="@+id/DestNameLabel"
-                android:layout_width="77dp"
-                android:layout_height="28dp"
-                android:layout_marginBottom="4dp"
+                android:layout_width="88dp"
+                android:layout_height="29dp"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/DestNameEdit"
                 android:text="@string/destName"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/DestNameEdit"
                 app:layout_constraintEnd_toEndOf="@+id/DateLabel"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/DateLabel" />
+                app:layout_constraintStart_toStartOf="@+id/radioGroup" />
 
             <EditText
                 android:id="@+id/DestNameEdit"
-                android:layout_width="266dp"
-                android:layout_height="42dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:importantForAutofill="no"
@@ -181,38 +180,36 @@
 
             <TextView
                 android:id="@+id/PaymentLabel"
-                android:layout_width="97dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_width="111dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/paymentLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/PaymentTypesSpinner"
-                app:layout_constraintEnd_toEndOf="@+id/LabelStateAddress"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/LabelStateAddress"
                 app:layout_constraintTop_toBottomOf="@+id/LabelStateAddress"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.872" />
 
             <Spinner
                 android:id="@+id/PaymentTypesSpinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="445dp"
+                android:layout_height="44dp"
                 android:layout_marginTop="24dp"
                 android:entries="@array/payment_types_values"
-                app:layout_constraintEnd_toEndOf="@+id/EditStateAddress"
+                app:layout_constraintEnd_toEndOf="@+id/AddButtonSelectTag"
                 app:layout_constraintStart_toStartOf="@+id/EditStateAddress"
                 app:layout_constraintTop_toBottomOf="@+id/EditStateAddress" />
 
             <TextView
                 android:id="@+id/PersonalNameLabel"
                 android:layout_width="0dp"
-                android:layout_height="34dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:labelFor="@id/PersonalNameEdit"
                 android:text="@string/personalNameLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/PersonalNameEdit"
-                app:layout_constraintEnd_toEndOf="@+id/LabelStateAddress"
-                app:layout_constraintStart_toStartOf="@+id/LabelStateAddress" />
+                app:layout_constraintEnd_toEndOf="@+id/PaymentLabel"
+                app:layout_constraintStart_toStartOf="@+id/PaymentLabel" />
 
             <EditText
                 android:id="@+id/PersonalNameEdit"
@@ -225,13 +222,13 @@
                 android:text="@string/personalNameEdit"
                 app:layout_constraintEnd_toEndOf="@+id/EditStateAddress"
                 app:layout_constraintHorizontal_bias="0.254"
-                app:layout_constraintStart_toStartOf="@+id/EditCityAddress"
+                app:layout_constraintStart_toStartOf="@+id/EditStateAddress"
                 app:layout_constraintTop_toBottomOf="@+id/PaymentTypesSpinner" />
 
             <TextView
                 android:id="@+id/NotesLabel"
                 android:layout_width="0dp"
-                android:layout_height="27dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:labelFor="@id/NotesEditText"
                 android:text="@string/notesLabel"
@@ -278,62 +275,62 @@
 
             <TextView
                 android:id="@+id/LabelNumAddress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="56dp"
+                android:layout_width="90dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="64dp"
                 android:labelFor="@id/EditNumAddress"
                 android:text="@string/label_num_address"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tags_selected"
                 app:layout_constraintTop_toBottomOf="@+id/DisplayAddressButton" />
 
             <EditText
                 android:id="@+id/EditNumAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="566dp"
+                android:layout_height="51dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="48dp"
                 android:autofillHints=""
                 android:ems="10"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="@+id/LabelNumAddress"
-                app:layout_constraintEnd_toEndOf="@+id/DestNameEdit"
-                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintEnd_toEndOf="@+id/AddButtonSelectTag"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/LabelNumAddress"
                 app:layout_constraintTop_toBottomOf="@+id/DisplayAddressButton"
-                app:layout_constraintVertical_bias="0.212" />
+                app:layout_constraintVertical_bias="0.058" />
 
             <TextView
                 android:id="@+id/LabelStreetAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
                 android:layout_marginTop="38dp"
                 android:labelFor="@id/EditStreetAddress"
                 android:text="@string/street_address"
                 app:layout_constraintBottom_toBottomOf="@+id/EditStreetAddress"
                 app:layout_constraintEnd_toEndOf="@+id/LabelNumAddress"
                 app:layout_constraintStart_toStartOf="@+id/LabelNumAddress"
-                app:layout_constraintTop_toBottomOf="@+id/LabelNumAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/LabelNumAddress"
+                app:layout_constraintVertical_bias="1.0" />
 
             <EditText
                 android:id="@+id/EditStreetAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="568dp"
+                android:layout_height="47dp"
                 android:layout_marginTop="36dp"
+                android:autofillHints=""
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/street_address_edit"
                 app:layout_constraintEnd_toEndOf="@+id/EditNumAddress"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/EditNumAddress"
-                app:layout_constraintTop_toBottomOf="@+id/EditNumAddress"
-                android:autofillHints="" />
+                app:layout_constraintTop_toBottomOf="@+id/EditNumAddress" />
 
 
             <TextView
                 android:id="@+id/LabelCityAddress"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
                 android:layout_marginTop="38dp"
                 android:labelFor="@id/EditCityAddress"
                 android:text="@string/city_address"
@@ -345,22 +342,22 @@
 
             <EditText
                 android:id="@+id/EditCityAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
+                android:autofillHints=""
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="@string/street_address_edit"
                 app:layout_constraintEnd_toEndOf="@+id/EditStreetAddress"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/EditStreetAddress"
-                app:layout_constraintTop_toBottomOf="@+id/EditStreetAddress"
-                android:autofillHints="" />
+                app:layout_constraintTop_toBottomOf="@+id/EditStreetAddress" />
 
             <TextView
                 android:id="@+id/LabelStateAddress"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_marginTop="38dp"
                 android:labelFor="@id/EditStateAddress"
                 android:text="@string/state_address"
@@ -373,7 +370,7 @@
 
             <EditText
                 android:id="@+id/EditStateAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:autofillHints=""
