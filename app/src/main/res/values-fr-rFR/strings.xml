@@ -39,6 +39,14 @@
     <string name="addResearchTag">Ajoutez un tag à la recherche</string>
     <string name="addButtonResearchTag">Ajouter</string>
 
+    <string name="generate">Générer</string>
+    <string name="button_for_add_tags">bouton pour ajouter des tags</string>
+
+    <string name="selection_start_date">Choisir date de départ</string>
+    <string name="selection_end_date">Choisir date de fin</string>
+
+
+
     <string name="label_num_address">Num : </string>
     <string name="address_button">Afficher adresse</string>
     <string name="address_button_hide">Cacher addresse</string>
@@ -47,5 +55,8 @@
     <string name="state_address">Etat :</string>
     <string name="state_address_edit" translatable="false" />
     <string name="toast_address_completed"> Adresse commencée mais non complète </string>
+
+
+
 
 </resources>

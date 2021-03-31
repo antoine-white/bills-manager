@@ -44,14 +44,16 @@
     <string name="amount" translatable="false">%1$.2f $</string>
     <string name="could_not_download">Could not download file</string>
     <string name="download_succ">Invoice downloaded successfully </string>
+    <string name="addResearchTag">Add a tag to the research</string>
+    <string name="addButtonResearchTag">Add</string>
 
-    <!-- tag Activity -->
+    <!-- Tag Activity -->
     <string name="format_date" >MM/dd/yy</string>
-
-    <!-- tag Activity -->
     <string name="tag_id" translatable="false">#%1$d</string>
     <string name="name_already">Could not add %1$s. Name already taken !</string>
     <string name="too_short">Could not add %1$s. Name too short !</string>
+    <string name="addNewTagLabel">Name of the new tag</string>
+    <string name="addNewTagButton">Add</string>
 
     <!-- Add activity -->
     <string name="addtitle">Add an Invoice </string>
@@ -62,6 +64,16 @@
     <string name="destName">Recipient : </string>
     <string name="infoSuppLabel">Optional information</string>
     <string name="addressLabel">Address : </string>
+    <string name="label_num_address">Num : </string>
+    <string name="address_button">display address</string>
+    <string name="address_button_hide">hide address</string>
+    <string name="street_address">Street :</string>
+    <string name="street_address_edit" translatable="false" />
+    <string name="city_address">City :</string>
+    <string name="city_address_edit" translatable="false" />
+    <string name="state_address">State :</string>
+    <string name="state_address_edit" translatable="false" />
+    <string name="toast_address_completed"> You have started the address but it is not complete</string>
     <string name="paymentLabel">Payment Type</string>
     <string name="amountEditText" translatable="false" />
     <string name="personalNameLabel">Name : </string>
@@ -74,29 +86,24 @@
 
     <string name="butAddInvoice">Add</string>
 
+
+    <!-- Stats activity -->
+    <string name="selection_start_date">Select start date</string>
+    <string name="selection_end_date">Select end date</string>
+    <string name="generate">Generate</string>
+
     <!-- General information -->
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">An application to easily manage your invoices!</string>
-    <string name="addNewTagLabel">Name of the new tag</string>
-    <string name="addNewTagButton">Add</string>
-    <string name="addResearchTag">Add a tag to the research</string>
-    <string name="addButtonResearchTag">Add</string>
+
+
     <string name="button_for_add_tags">button for add tags</string>
-    <string name="add_a_tag_to_the_reasearch">Add a tag to the reasearch</string>
-    <string name="selection_start_date">Selection start date</string>
-    <string name="selection_end_date">Selection end date</string>
-    <string name="generate">Generate</string>
-    <string name="name_of_the_new_tag">Name of the new tag</string>
-    <string name="label_num_address">Num : </string>
-    <string name="address_button">display address</string>
-    <string name="address_button_hide">hide address</string>
-    <string name="street_address">Street :</string>
-    <string name="street_address_edit" translatable="false" />
-    <string name="city_address">City :</string>
-    <string name="city_address_edit" translatable="false" />
-    <string name="state_address">State :</string>
-    <string name="state_address_edit" translatable="false" />
-    <string name="toast_address_completed"> You have started the address but it is not complete</string>
+
+
+
+
+
+
 
 
 </resources>
