@@ -178,12 +178,18 @@ public class AddActivity extends AppCompatActivity {
                     invoiceHandler.AddInvoice(invoice);
 
                     int cpt = 0;
-                    int[] tagIds = new int[selected.size()];
-                    for(ITag tag : selected){
-                        tagIds[cpt] = tag.getId();
-                        Log.v("test_tag_id_size", selected.get(cpt).getName());
-                        cpt ++;
+                    int[] tagIds;
+                    if(selected.size() > 0){
+                        tagIds = new int[selected.size()];
+                        for(ITag tag : selected){
+                            tagIds[cpt] = tag.getId();
+                            Log.v("test_tag_id_size", selected.get(cpt).getName());
+                            cpt ++;
+                        }
+                    } else {
+                        tagIds = new int[]{DefaultTag.ID_NO_LABEL};
                     }
+
                     invoice.addTagsId(tagIds);
 
                     Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
@@ -306,28 +312,29 @@ public class AddActivity extends AppCompatActivity {
 
     private void addOptionalInfo(){
         addSpinnerPaymentType();
-        if(!this.notesEditText.equals(""))
+        if(!this.notesEditText.getText().toString().equals(""))
             invoice.addNotes(this.notesEditText.getText().toString());
 
-        if(!this.personalNameEdit.equals(""))
+        if(!this.personalNameEdit.getText().toString().equals(""))
             invoice.addInvoiceName(this.personalNameEdit.getText().toString());
-/*
-        Address a;
-        if((!this.numAddress.equals(""))&&(!this.streetAddress.equals(""))&&(!this.cityAddress.equals(""))&&(!this.stateAddress.equals(""))){
-            int num = Integer.parseInt(this.numAddress.getText().toString());
-            String street = this.streetAddress.getText().toString();
-            String city = this.cityAddress.getText().toString();
-            String state = this.stateAddress.getText().toString();
-            a = new Address(num,street,city,state);
 
-        } else {
-            a = new Address(-1,"","","");
-
+        if((this.numAddress.getText().toString().length() > 0 )&&
+                (this.streetAddress.getText().toString().length() > 0 )&&
+                (this.cityAddress.getText().toString().length() > 0 )&&
+                (this.stateAddress.getText().toString().length() > 0 ))
+        {
+            int num;
+            try{
+                num = Integer.parseInt(this.numAddress.getText().toString());
+                String street = this.streetAddress.getText().toString();
+                String city = this.cityAddress.getText().toString();
+                String state = this.stateAddress.getText().toString();
+                Address a = new Address(num, street, city, state);
+                invoice.addAddress(a);
+            } catch (NumberFormatException e){
+                //Log.d(App.getAppTag(),"");
+            }
         }
-
-        invoice.addAddress(a);
-*/
-
     }
 
     private void addSpinnerPaymentType(){

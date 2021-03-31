@@ -27,7 +27,8 @@
     <string name="personalNameLabel">"Nom : "</string><string name="toastfieldrequired">Champs obligatoires non complets </string>
     <string name="toastinvoicecompleted"> Facture bien ajoutée !  </string>
     <string name="butAddInvoice">Ajouter</string>
-
+    <string name="digi" >digital</string>
+    <string name="unlabeled" >Sans label</string>
 
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">Une application pour facilement gérer vos factures !</string>
@@ -37,5 +38,14 @@
     <string name="format_date">dd/MM/yy</string>
     <string name="addResearchTag">Ajoutez un tag à la recherche</string>
     <string name="addButtonResearchTag">Ajouter</string>
+
+    <string name="label_num_address">Num : </string>
+    <string name="address_button">Afficher adresse</string>
+    <string name="address_button_hide">Cacher addresse</string>
+    <string name="street_address">Rue : </string>
+    <string name="city_address">Ville : </string>
+    <string name="state_address">Etat :</string>
+    <string name="state_address_edit" translatable="false" />
+    <string name="toast_address_completed"> Adresse commencée mais non complète </string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         setContentView(R.layout.activity_main);
         ((TextView)findViewById(R.id.version)).setText(getString(R.string.version, BuildConfig.VERSION_NAME));
 
+
+        ViewGroup group = findViewById(R.id.parent_menu);
+        group.removeAllViews();
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -65,17 +70,6 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         }
 
         fragmentTransaction.commit();
-
-
-/*
-
-        App a = (App) getApplication();
-        /*
-        a.AddInvoice(new Invoice(10,new Date(),true,"burgerKing"));
-        a.AddInvoice(new Invoice(12,new Date(),true,"McDo"));
-        a.AddInvoice(new Invoice(10,new Date(),true,"KFC"));
-        for(Invoice i : a.getInvoices())
-            Log.d(App.getAppTag(),i.toString());*/
     }
 
 
