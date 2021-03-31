@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:labelFor="@id/add_edit_text"
-        android:text="@string/name_of_the_new_tag"
+        android:text="@string/addNewTagLabel"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_text"
         app:layout_constraintStart_toStartOf="@+id/add_edit_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
