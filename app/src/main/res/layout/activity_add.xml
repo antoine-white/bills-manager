@@ -183,13 +183,12 @@
                 android:id="@+id/PaymentLabel"
                 android:layout_width="97dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="4dp"
                 android:text="@string/paymentLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/PaymentTypesSpinner"
-                app:layout_constraintEnd_toEndOf="@+id/LabelStateAddress"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/LabelStateAddress"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/LabelStateAddress"
                 app:layout_constraintVertical_bias="1.0" />
 
@@ -211,8 +210,8 @@
                 android:labelFor="@id/PersonalNameEdit"
                 android:text="@string/personalNameLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/PersonalNameEdit"
-                app:layout_constraintEnd_toEndOf="@+id/LabelStateAddress"
-                app:layout_constraintStart_toStartOf="@+id/LabelStateAddress" />
+                app:layout_constraintEnd_toEndOf="@+id/PaymentLabel"
+                app:layout_constraintStart_toStartOf="@+id/PaymentLabel" />
 
             <EditText
                 android:id="@+id/PersonalNameEdit"
@@ -223,9 +222,9 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:text="@string/personalNameEdit"
-                app:layout_constraintEnd_toEndOf="@+id/EditStateAddress"
+                app:layout_constraintEnd_toEndOf="@+id/PaymentTypesSpinner"
                 app:layout_constraintHorizontal_bias="0.254"
-                app:layout_constraintStart_toStartOf="@+id/EditCityAddress"
+                app:layout_constraintStart_toStartOf="@+id/PaymentTypesSpinner"
                 app:layout_constraintTop_toBottomOf="@+id/PaymentTypesSpinner" />
 
             <TextView
@@ -332,8 +331,8 @@
 
             <TextView
                 android:id="@+id/LabelCityAddress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="52dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="38dp"
                 android:labelFor="@id/EditCityAddress"
                 android:text="@string/city_address"

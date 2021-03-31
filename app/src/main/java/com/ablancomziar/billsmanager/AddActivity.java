@@ -39,7 +39,6 @@ public class AddActivity extends AppCompatActivity {
 
     private List<ITag> selected;
     private List<ITag> available;
-    private List<Invoice> invoices;
 
 
     private EditText amountEditText;
@@ -53,14 +52,8 @@ public class AddActivity extends AppCompatActivity {
     private EditText personalNameEdit;
     private EditText notesEditText;
 
-    private Button addButton;
-
     private Invoice invoice;
 
-
-    private ImageButton addTag;
-    private ArrayList<ITag> selectedList;
-    //private int[] tagIds;
 
 
     private  final Calendar myCalendar = Calendar.getInstance();
@@ -91,10 +84,10 @@ public class AddActivity extends AppCompatActivity {
         this.creditor = findViewById(R.id.radioButton2);
         this.destNameEdit = findViewById(R.id.DestNameEdit);
         this.spinnerPaymentTypes = findViewById(R.id.PaymentTypesSpinner);
-        this.addButton = findViewById(R.id.AddInvoice);
+        Button addButton = findViewById(R.id.AddInvoice);
         this.personalNameEdit = findViewById(R.id.PersonalNameEdit);
         this.notesEditText = findViewById(R.id.NotesEditText);
-        this.addTag = findViewById(R.id.AddButtonSelectTag);
+        ImageButton addTag = findViewById(R.id.AddButtonSelectTag);
 
 
         this.displayAddressButton = findViewById(R.id.DisplayAddressButton);
@@ -117,8 +110,6 @@ public class AddActivity extends AppCompatActivity {
         this.isVisible = false;
 
 
-        this.selectedList = new ArrayList<>();
-
         parseDate();
 
         spinner = findViewById(R.id.spinnerSelectTagForNewInvoice);
@@ -131,6 +122,7 @@ public class AddActivity extends AppCompatActivity {
 
         setSpinnerAdapter();
 
+        // Ce bouton sert à ajouter un tag à la facture
         addTag.setOnClickListener(new View.OnClickListener() {
               public void onClick(View v) {
               String str = spinner.getSelectedItem().toString();
@@ -146,6 +138,7 @@ public class AddActivity extends AppCompatActivity {
         });
 
 
+        //celui sert à visualiser les champs pour remplir l'adresse ou non
         displayAddressButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 setVisibilityAddress(v);
@@ -157,51 +150,55 @@ public class AddActivity extends AppCompatActivity {
 
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            int requiredField = testRequiredField();
-            if(requiredField != 4 ){
-                Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastfieldrequired), Toast.LENGTH_SHORT);
-                toast.show();
-
-            } else {
-                boolean iscredit = true;
-                if((debtor.isChecked()))
-                    iscredit = false;
-
-
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
-                try {
-                    Date date = sdf.parse(editTextDate.getText().toString());
-                    invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
-
-                    addOptionalInfo();
-
-                    invoiceHandler.AddInvoice(invoice);
-
-                    int cpt = 0;
-                    int[] tagIds = new int[selected.size()];
-                    for(ITag tag : selected){
-                        tagIds[cpt] = tag.getId();
-                        Log.v("test_tag_id_size", selected.get(cpt).getName());
-                        cpt ++;
-                    }
-                    invoice.addTagsId(tagIds);
-
-                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
+                int requiredField = testRequiredField();
+                // si les 4 champs obligatoires ne sont pas remplis
+                if(requiredField != 4 ){
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastfieldrequired), Toast.LENGTH_SHORT);
                     toast.show();
-                    Intent activity = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(activity);
 
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                } else {
+                    boolean iscredit = true;
+                    if((debtor.isChecked()))
+                        iscredit = false;
+
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
+                    try {
+                        Date date = sdf.parse(editTextDate.getText().toString());
+                        invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
+
+                        // cette fonction ajoute les champs optionnels à la fonction
+                        addOptionalInfo();
+
+                        invoiceHandler.AddInvoice(invoice);
+
+                        // ajoute les tags à la facture
+                        int cpt = 0;
+                        int[] tagIds = new int[selected.size()];
+                        for(ITag tag : selected){
+                            tagIds[cpt] = tag.getId();
+                            Log.v("test_tag_id_size", selected.get(cpt).getName());
+                            cpt ++;
+                        }
+                        invoice.addTagsId(tagIds);
+
+                        Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
+                        toast.show();
+                        //renvoie vers le menu
+                        Intent activity = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(activity);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-            }
             }
         });
 
     }
 
 
+    // actualise les tags dans le spinner
     private void setSpinnerAdapter(){
         ArrayList<String> spinnerArray = new ArrayList<>();
         for(ITag tag : available)
@@ -212,9 +209,9 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
+    // vérifie si les 4 champs obligatoires sont remplis
     private int testRequiredField(){
         int count = 0;
-
         if(!this.amountEditText.getText().toString().equals(""))
             count ++;
 
@@ -231,15 +228,13 @@ public class AddActivity extends AppCompatActivity {
 
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here
-
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         this.editTextDate.setText(sdf.format(myCalendar.getTime()));
     }
 
+    // crée le calendrier
     private void parseDate(){
-
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
@@ -250,9 +245,7 @@ public class AddActivity extends AppCompatActivity {
             }
 
         };
-
         editTextDate.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(AddActivity.this, date, myCalendar
@@ -264,6 +257,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
+    // affiche les tags selectionnés
     private void displaySelectedTag(){
         ViewGroup group = findViewById(R.id.tags_selected);
         group.removeAllViews();
@@ -301,6 +295,7 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
+    // vérifie et ajoute à la facture si des champs optionnels sont remplis
     private void addOptionalInfo(){
         addSpinnerPaymentType();
         if(!this.notesEditText.getText().toString().equals(""))
@@ -324,6 +319,8 @@ public class AddActivity extends AppCompatActivity {
     }
 
 
+    // ajoute le moyen de paiement
+
     private void addSpinnerPaymentType(){
         int pos = spinnerPaymentTypes.getSelectedItemPosition();
 
@@ -343,6 +340,7 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    // affichage du bouton adresse ou non
 
     private void setVisibilityAddress(View v){
         if(this.isVisible){
