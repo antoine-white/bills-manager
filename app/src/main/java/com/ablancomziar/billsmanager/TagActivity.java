@@ -24,8 +24,6 @@ public class TagActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
-
-
         
         editText = findViewById(R.id.add_edit_text);
         addButton = findViewById(R.id.add_tag_button);
@@ -66,7 +64,6 @@ public class TagActivity extends AppCompatActivity {
     private void addToList(ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
         View view = layoutInflater.inflate(R.layout.tag_layout, parentLayout, false);
 
-        // In order to get the view we have to use the new view with text_layout in it
         TextView textView = view.findViewById(R.id.tag_layout_text);
         textView.setText(tag.getName());
 

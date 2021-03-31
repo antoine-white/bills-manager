@@ -95,7 +95,6 @@ public final class Invoice implements Serializable {
                 '}';
     }
 
-
     public String toHTML(Context ctx, ITagHandler tagHandler){
 
         String tagStr = "";

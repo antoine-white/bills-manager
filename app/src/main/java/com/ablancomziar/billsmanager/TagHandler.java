@@ -18,7 +18,7 @@ class TagHandler implements ITagHandler{
     private List<ITag> tags;
     private List<CustomTag> customTags;
     private App app;
-    public static final String FILENAME_TAGS = "test6";
+    public static final String FILENAME_TAGS = "test11";
     public static final int LAST_ID_DEFAULT = 10;
     private int currentLastId;
 
@@ -43,7 +43,6 @@ class TagHandler implements ITagHandler{
         } else {
             try {
                 List<String> lines = app.readAllLines(file);
-
                 Log.println(Log.DEBUG, APP_TAG, "found file !");
                 ITag[] tag = DefaultTag.getAllDefaultTag(app);
                 tags = new ArrayList<>();
@@ -62,7 +61,7 @@ class TagHandler implements ITagHandler{
                 Log.println(Log.DEBUG, APP_TAG, "cannot open file !");
                 e.printStackTrace();
             }  catch (Exception e) {
-                Log.println(Log.DEBUG, APP_TAG, "Error reading file !");
+                Log.println(Log.DEBUG, APP_TAG, "Error reading file !" + e.getMessage());
                 e.printStackTrace();
             }
 
@@ -104,9 +103,9 @@ class TagHandler implements ITagHandler{
 
     private void saveCustomTags(){
         List<String> s = new ArrayList<>();
-        s.add(customTags.get(customTags.size()-1).getId() + "");
+        s.add(customTags.get(customTags.size()-1).getId() + "\n");
         for (CustomTag c : this.customTags)
-            s.add(c.getId() + "," + c.getName() + "," + c.getColor());
+            s.add(c.getId() + "," + c.getName() + "," + c.getColor() + "\n");
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(app.openFileOutput(FILENAME_TAGS, Context.MODE_PRIVATE));
             for(String str: s)

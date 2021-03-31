@@ -77,12 +77,6 @@ public class SavedActivity extends AppCompatActivity {
 
         invoices = a.getInvoices();
         updateInvoiceView();
-
-        /*String s = invoices.get(0).toHTML(a);
-        Log.d(App.getAppTag(),"test : " + s);
-        updateInvoiceView();*/
-
-
     }
 
     private void setSpinnerAdapter(){
@@ -104,7 +98,6 @@ public class SavedActivity extends AppCompatActivity {
     private void addToTagView(ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
         View view = layoutInflater.inflate(R.layout.small_tag_layout, parentLayout, false);
 
-        // In order to get the view we have to use the new view with text_layout in it
         TextView textView = view.findViewById(R.id.tag_layout_text);
         textView.setText(tag.getName());
 

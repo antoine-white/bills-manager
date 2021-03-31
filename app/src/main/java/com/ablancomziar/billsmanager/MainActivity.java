@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
                 new MenuData(R.drawable.tags, getString(R.string.edit_tags),TagActivity.class),
                 new MenuData(R.drawable.report, getString(R.string.saved_invoices),SavedActivity.class),
                 new MenuData(R.drawable.chart, getString(R.string.stats),StatsActivity.class),
-                new MenuData(R.drawable.privacy, getString(R.string.policies),MainActivity.class),
         };
     }
 
@@ -58,8 +57,7 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         ((TextView)findViewById(R.id.version)).setText(getString(R.string.version, BuildConfig.VERSION_NAME));
 
 
-        ViewGroup group = findViewById(R.id.parent_menu);
-        group.removeAllViews();
+
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -71,8 +69,6 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
 
         fragmentTransaction.commit();
     }
-
-
 
     @Override
     public void onFragmentInteraction(String text) {

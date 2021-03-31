@@ -65,6 +65,8 @@ class InvoiceHandler implements IInvoiceHandler{
         try {
             FileOutputStream fos = app.openFileOutput(FILENAME_INCOICES, Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
+            Log.println(Log.DEBUG, APP_TAG, "saved " + invoices);
+
             os.writeObject(invoices);
             os.close();
             fos.close();
@@ -91,6 +93,7 @@ class InvoiceHandler implements IInvoiceHandler{
                 FileInputStream fis = app.openFileInput(FILENAME_INCOICES);
                 ObjectInputStream is = new ObjectInputStream(fis);
                 invoices = (List<Invoice>) is.readObject();
+                Log.println(Log.DEBUG, APP_TAG, "retrieve " + invoices);
                 is.close();
                 fis.close();
 
@@ -98,7 +101,7 @@ class InvoiceHandler implements IInvoiceHandler{
                 Log.println(Log.DEBUG, APP_TAG, "cannot open file !");
                 e.printStackTrace();
             }  catch (Exception e) {
-                Log.println(Log.DEBUG, APP_TAG, "Error reading file !");
+                Log.println(Log.DEBUG, APP_TAG, "Error reading file invoice !");
                 e.printStackTrace();
             }
 

@@ -106,6 +106,7 @@ public class StatsActivity extends AppCompatActivity {
             }
         });
 
+        // starts with default first 2 dates
         updateLabel(true);
         updateLabel(false);
     }
@@ -115,14 +116,6 @@ public class StatsActivity extends AppCompatActivity {
         cal.setTime(date);
         return cal;
     }
-
-    /*public static <T> Float getMaxValue(Map<T,Float> map){
-        Float maxValue = Float.MIN_VALUE;
-        for(T i : map.keySet())
-            if(map.get(i) > maxValue)
-                maxValue = map.get(i);
-        return maxValue;
-    }*/
 
     public static List<Pair<Integer,Float>> sort(Map<Integer,Float> map){
         List<Pair<Integer,Float>> l = new ArrayList<>();
@@ -216,6 +209,7 @@ public class StatsActivity extends AppCompatActivity {
                 .setDuration(2000)
                 .start();
 
+        // without animation but color uncomment this
         //progressBar.setProgress((int)((value.second / max ) * 100f));
         //progressBar.getProgressDrawable().setColorFilter(value.first.getColor(), PorterDuff.Mode.SRC_IN);
 

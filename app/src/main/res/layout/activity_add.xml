@@ -292,7 +292,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="48dp"
-                android:autofillHints=""
                 android:ems="10"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="@+id/LabelNumAddress"
@@ -300,7 +299,8 @@
                 app:layout_constraintHorizontal_bias="0.458"
                 app:layout_constraintStart_toEndOf="@+id/LabelNumAddress"
                 app:layout_constraintTop_toBottomOf="@+id/DisplayAddressButton"
-                app:layout_constraintVertical_bias="0.212" />
+                app:layout_constraintVertical_bias="0.212"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/LabelStreetAddress"
@@ -326,7 +326,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/EditNumAddress"
                 app:layout_constraintTop_toBottomOf="@+id/EditNumAddress"
-                android:autofillHints="" />
+                android:importantForAutofill="no" />
 
 
             <TextView
@@ -354,7 +354,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/EditStreetAddress"
                 app:layout_constraintTop_toBottomOf="@+id/EditStreetAddress"
-                android:autofillHints="" />
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/LabelStateAddress"
@@ -375,7 +375,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:autofillHints=""
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:labelFor="@id/LabelStateAddress"
@@ -383,7 +382,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/EditCityAddress"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/EditCityAddress"
-                app:layout_constraintTop_toBottomOf="@+id/EditCityAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/EditCityAddress"
+                android:importantForAutofill="no" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
