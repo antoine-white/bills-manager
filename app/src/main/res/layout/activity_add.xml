@@ -6,28 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity">
 
-    <TextView
-        android:id="@+id/AddTitle"
-        android:layout_width="224dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/addtitle"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddTitle"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -36,290 +24,261 @@
 
             <TextView
                 android:id="@+id/AmountLabel"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/AmountEditText"
                 android:text="@string/amountLabel"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/AmountEditText"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/AmountEditText"
-                android:layout_width="266dp"
-                android:layout_height="53dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:autofillHints=""
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="number|numberDecimal"
                 android:text="@string/amountEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/AmountLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/AmountLabel"
-                app:layout_constraintTop_toTopOf="@+id/AmountLabel" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/DateLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/editTextDate"
                 android:text="@string/dateLabel"
-                android:textSize="20sp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
                 app:layout_constraintEnd_toEndOf="@+id/AmountLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AmountLabel" />
+                app:layout_constraintStart_toStartOf="@+id/AmountLabel" />
 
             <EditText
                 android:id="@+id/editTextDate"
-                android:layout_width="267dp"
-                android:layout_height="46dp"
-                android:autofillHints=""
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:ems="10"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:importantForAutofill="no"
                 android:inputType="date"
-                app:layout_constraintBottom_toBottomOf="@+id/DateLabel"
                 app:layout_constraintEnd_toEndOf="@+id/AmountEditText"
                 app:layout_constraintStart_toStartOf="@+id/AmountEditText"
-                app:layout_constraintTop_toTopOf="@+id/DateLabel" />
+                app:layout_constraintTop_toBottomOf="@+id/AmountEditText" />
 
             <RadioGroup
                 android:id="@+id/radioGroup"
                 android:layout_width="0dp"
-                android:layout_height="99dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@+id/editTextDate"
                 app:layout_constraintStart_toStartOf="@+id/DateLabel"
-                app:layout_constraintTop_toBottomOf="@+id/DateLabel">
+                app:layout_constraintTop_toBottomOf="@+id/editTextDate">
 
                 <RadioButton
                     android:id="@+id/radioButton"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/radiobuttonIsCredit" />
 
                 <RadioButton
                     android:id="@+id/radioButton2"
                     android:layout_width="match_parent"
-                    android:layout_height="51dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/radiobuttonIsDebit" />
 
             </RadioGroup>
 
             <TextView
                 android:id="@+id/DestNameLabel"
-                android:layout_width="111dp"
-                android:layout_height="36dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/DestNameEdit"
                 android:text="@string/destName"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/DestNameEdit"
+                app:layout_constraintEnd_toEndOf="@+id/DateLabel"
+                app:layout_constraintStart_toStartOf="@+id/radioGroup" />
 
             <EditText
                 android:id="@+id/DestNameEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
+                android:layout_marginTop="16dp"
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:labelFor="@id/DestNameLabel"
-                app:layout_constraintBottom_toBottomOf="@+id/DestNameLabel"
                 app:layout_constraintEnd_toEndOf="@+id/editTextDate"
-                app:layout_constraintStart_toEndOf="@+id/DestNameLabel"
+                app:layout_constraintStart_toStartOf="@+id/editTextDate"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
             <TextView
                 android:id="@+id/SelectTagLabelForNewInvoice"
-                android:layout_width="131dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="44dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/selectTagLabelForNewInvoice"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/DestNameLabel" />
+                app:layout_constraintBottom_toBottomOf="@+id/spinnerSelectTagForNewInvoice"
+                app:layout_constraintStart_toStartOf="@+id/DestNameLabel"
+                app:layout_constraintTop_toTopOf="@+id/spinnerSelectTagForNewInvoice" />
 
             <Spinner
                 android:id="@+id/spinnerSelectTagForNewInvoice"
-                android:layout_width="167dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintBottom_toBottomOf="@+id/SelectTagLabelForNewInvoice"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/AddButtonSelectTag"
+                app:layout_constraintEnd_toStartOf="@+id/AddButtonSelectTag"
                 app:layout_constraintStart_toEndOf="@+id/SelectTagLabelForNewInvoice"
-                app:layout_constraintTop_toBottomOf="@+id/DestNameEdit" />
+                app:layout_constraintTop_toTopOf="@+id/AddButtonSelectTag" />
 
             <ImageButton
                 android:id="@+id/AddButtonSelectTag"
-                android:layout_width="55dp"
-                android:layout_height="56dp"
-                android:layout_marginTop="32dp"
-                android:contentDescription="button for add tags "
-                app:layout_constraintBottom_toBottomOf="@+id/spinnerSelectTagForNewInvoice"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.529"
-                app:layout_constraintStart_toEndOf="@+id/spinnerSelectTagForNewInvoice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/button_for_add_tags"
+                app:layout_constraintEnd_toEndOf="@+id/DestNameEdit"
                 app:layout_constraintTop_toBottomOf="@+id/DestNameEdit"
                 app:srcCompat="@drawable/add" />
 
-            <ScrollView
-                android:id="@+id/scrollViewSelectedTags"
-                android:layout_width="266dp"
-                android:layout_height="141dp"
-                android:layout_marginTop="36dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.765"
-                app:layout_constraintStart_toStartOf="parent"
+            <LinearLayout
+                android:id="@+id/tags_selected"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/AddButtonSelectTag"
+                app:layout_constraintStart_toStartOf="@+id/SelectTagLabelForNewInvoice"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerSelectTagForNewInvoice">
 
-                <LinearLayout
-                    android:id="@+id/tags_selected"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-            </ScrollView>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/InfoSuppLabel"
-                android:layout_width="224dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="@string/infoSuppLabel"
                 android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scrollViewSelectedTags" />
+                app:layout_constraintTop_toBottomOf="@+id/tags_selected" />
 
             <TextView
                 android:id="@+id/AddressLabel"
-                android:layout_width="129dp"
+                android:layout_width="0dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/AddressEditText"
                 android:text="@string/addressLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/InfoSuppLabel" />
+                app:layout_constraintBottom_toBottomOf="@+id/AddressEditText"
+                app:layout_constraintEnd_toEndOf="@+id/DestNameLabel"
+                app:layout_constraintStart_toStartOf="@+id/DestNameLabel" />
 
             <EditText
                 android:id="@+id/AddressEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:layout_marginTop="24dp"
-                android:autofillHints=""
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPostalAddress"
-                app:layout_constraintBottom_toBottomOf="@+id/AddressLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.218"
-                app:layout_constraintStart_toEndOf="@+id/AddressLabel"
+                app:layout_constraintEnd_toEndOf="@+id/DestNameEdit"
+                app:layout_constraintStart_toStartOf="@+id/DestNameEdit"
                 app:layout_constraintTop_toBottomOf="@+id/InfoSuppLabel" />
 
             <TextView
                 android:id="@+id/PaymentLabel"
-                android:layout_width="128dp"
+                android:layout_width="0dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/paymentLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AddressLabel" />
+                app:layout_constraintBottom_toBottomOf="@+id/PaymentTypesSpinner"
+                app:layout_constraintEnd_toEndOf="@+id/AddressLabel"
+                app:layout_constraintStart_toStartOf="@+id/AddressLabel" />
 
             <Spinner
                 android:id="@+id/PaymentTypesSpinner"
-                android:layout_width="182dp"
+                android:layout_width="0dp"
                 android:layout_height="59dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:entries="@array/payment_types_values"
-                app:layout_constraintBottom_toBottomOf="@+id/PaymentLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/PaymentLabel"
-                app:layout_constraintTop_toBottomOf="@+id/AddressEditText"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintEnd_toEndOf="@+id/AddressEditText"
+                app:layout_constraintStart_toStartOf="@+id/AddressEditText"
+                app:layout_constraintTop_toBottomOf="@+id/AddressEditText" />
 
             <TextView
                 android:id="@+id/PersonalNameLabel"
-                android:layout_width="61dp"
+                android:layout_width="0dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/PersonalNameEdit"
                 android:text="@string/personalNameLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PaymentLabel" />
+                app:layout_constraintBottom_toBottomOf="@+id/PersonalNameEdit"
+                app:layout_constraintEnd_toEndOf="@+id/PaymentLabel"
+                app:layout_constraintStart_toStartOf="@+id/PaymentLabel" />
 
             <EditText
                 android:id="@+id/PersonalNameEdit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="20dp"
-                android:autofillHints=""
+                android:layout_marginTop="16dp"
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:text="@string/personalNameEdit"
-                app:layout_constraintBottom_toBottomOf="@+id/PersonalNameLabel"
-                app:layout_constraintEnd_toEndOf="@+id/AddressEditText"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/PersonalNameLabel"
-                app:layout_constraintTop_toBottomOf="@+id/PaymentTypesSpinner"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toEndOf="@+id/PaymentTypesSpinner"
+                app:layout_constraintStart_toStartOf="@+id/PaymentTypesSpinner"
+                app:layout_constraintTop_toBottomOf="@+id/PaymentTypesSpinner" />
 
             <TextView
                 android:id="@+id/NotesLabel"
-                android:layout_width="63dp"
+                android:layout_width="0dp"
                 android:layout_height="27dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="44dp"
+                android:layout_marginBottom="8dp"
                 android:labelFor="@id/NotesEditText"
                 android:text="@string/notesLabel"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PersonalNameLabel" />
+                app:layout_constraintBottom_toBottomOf="@+id/NotesEditText"
+                app:layout_constraintEnd_toEndOf="@+id/PersonalNameLabel"
+                app:layout_constraintStart_toStartOf="@+id/PersonalNameLabel" />
 
             <EditText
                 android:id="@+id/NotesEditText"
-                android:layout_width="243dp"
+                android:layout_width="0dp"
                 android:layout_height="66dp"
-                android:layout_marginStart="76dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="41dp"
-                android:autofillHints=""
                 android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:text="@string/notesEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/NotesLabel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.848"
-                app:layout_constraintStart_toEndOf="@+id/NotesLabel"
-                app:layout_constraintTop_toBottomOf="@+id/PersonalNameEdit"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toEndOf="@+id/PersonalNameEdit"
+                app:layout_constraintStart_toStartOf="@+id/PersonalNameEdit"
+                app:layout_constraintTop_toBottomOf="@+id/PersonalNameEdit" />
 
             <Button
                 android:id="@+id/AddInvoice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/butAddInvoice"
+                android:textAlignment="center"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NotesEditText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,13 +17,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.39"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/add_tag_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:text="@string/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/add_edit_text"
         app:layout_constraintStart_toStartOf="@+id/add_edit_text"
@@ -46,7 +47,7 @@
         <LinearLayout
             android:id="@+id/tag_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:divider="?android:attr/listDivider"
             android:orientation="vertical"
             android:showDividers="middle"
@@ -57,7 +58,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name of the new tag"
+        android:labelFor="@id/add_edit_text"
+        android:text="@string/name_of_the_new_tag"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_text"
         app:layout_constraintStart_toStartOf="@+id/add_edit_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

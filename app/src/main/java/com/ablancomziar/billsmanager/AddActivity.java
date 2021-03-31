@@ -70,6 +70,9 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        getSupportActionBar().setTitle(getString(R.string.addtitle));
+
         this.amountEditText = findViewById(R.id.AmountEditText);
         this.editTextDate = findViewById(R.id.editTextDate);
         this.debtor = findViewById(R.id.radioButton);

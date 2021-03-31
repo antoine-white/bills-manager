@@ -73,8 +73,6 @@
 
     <string name="butAddInvoice">Add</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
 
     <!-- General information -->
@@ -84,6 +82,12 @@
     <string name="addNewTagButton">Add</string>
     <string name="addResearchTag">Add a tag to the research</string>
     <string name="addButtonResearchTag">Add</string>
+    <string name="button_for_add_tags">button for add tags</string>
+    <string name="add_a_tag_to_the_reasearch">Add a tag to the reasearch</string>
+    <string name="selection_start_date">Selection start date</string>
+    <string name="selection_end_date">Selection end date</string>
+    <string name="generate">Generate</string>
+    <string name="name_of_the_new_tag">Name of the new tag</string>
 
 
 </resources>

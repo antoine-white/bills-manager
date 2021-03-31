@@ -16,7 +16,8 @@
         android:labelFor="@id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/add_tag_button"
         app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/add_tag_button"
@@ -44,18 +45,20 @@
         <LinearLayout
             android:id="@+id/tag_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:divider="?android:attr/listDivider"
             android:orientation="vertical"
             android:showDividers="middle"
             app:layout_constraintTop_toBottomOf="@+id/add_edit_text" />
     </ScrollView>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:labelFor="@id/add_edit_text"
         android:text="@string/addNewTagLabel"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
