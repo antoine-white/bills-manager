@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -102,8 +103,8 @@
 
             <TextView
                 android:id="@+id/DestNameLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="88dp"
+                android:layout_height="29dp"
                 android:layout_marginBottom="8dp"
                 android:labelFor="@id/DestNameEdit"
                 android:text="@string/destName"
@@ -178,47 +179,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/tags_selected" />
 
             <TextView
-                android:id="@+id/AddressLabel"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_marginBottom="8dp"
-                android:labelFor="@id/AddressEditText"
-                android:text="@string/addressLabel"
-                app:layout_constraintBottom_toBottomOf="@+id/AddressEditText"
-                app:layout_constraintEnd_toEndOf="@+id/DestNameLabel"
-                app:layout_constraintStart_toStartOf="@+id/DestNameLabel" />
-
-            <EditText
-                android:id="@+id/AddressEditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:ems="10"
-                android:importantForAutofill="no"
-                android:inputType="textPostalAddress"
-                app:layout_constraintEnd_toEndOf="@+id/DestNameEdit"
-                app:layout_constraintStart_toStartOf="@+id/DestNameEdit"
-                app:layout_constraintTop_toBottomOf="@+id/InfoSuppLabel" />
-
-            <TextView
                 android:id="@+id/PaymentLabel"
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="95dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="4dp"
                 android:text="@string/paymentLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/PaymentTypesSpinner"
-                app:layout_constraintEnd_toEndOf="@+id/AddressLabel"
-                app:layout_constraintStart_toStartOf="@+id/AddressLabel" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LabelStateAddress"
+                app:layout_constraintVertical_bias="0.823" />
 
             <Spinner
                 android:id="@+id/PaymentTypesSpinner"
-                android:layout_width="0dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="215dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="24dp"
                 android:entries="@array/payment_types_values"
-                app:layout_constraintEnd_toEndOf="@+id/AddressEditText"
-                app:layout_constraintStart_toStartOf="@+id/AddressEditText"
-                app:layout_constraintTop_toBottomOf="@+id/AddressEditText" />
+                app:layout_constraintEnd_toEndOf="@+id/AddButtonSelectTag"
+                app:layout_constraintStart_toEndOf="@+id/PaymentLabel"
+                app:layout_constraintTop_toBottomOf="@+id/EditStateAddress" />
 
             <TextView
                 android:id="@+id/PersonalNameLabel"
@@ -233,14 +213,15 @@
 
             <EditText
                 android:id="@+id/PersonalNameEdit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_width="252dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="24dp"
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:text="@string/personalNameEdit"
                 app:layout_constraintEnd_toEndOf="@+id/PaymentTypesSpinner"
+                app:layout_constraintHorizontal_bias="0.254"
                 app:layout_constraintStart_toStartOf="@+id/PaymentTypesSpinner"
                 app:layout_constraintTop_toBottomOf="@+id/PaymentTypesSpinner" />
 
@@ -248,17 +229,18 @@
                 android:id="@+id/NotesLabel"
                 android:layout_width="0dp"
                 android:layout_height="27dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="4dp"
                 android:labelFor="@id/NotesEditText"
                 android:text="@string/notesLabel"
                 app:layout_constraintBottom_toBottomOf="@+id/NotesEditText"
                 app:layout_constraintEnd_toEndOf="@+id/PersonalNameLabel"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/PersonalNameLabel" />
 
             <EditText
                 android:id="@+id/NotesEditText"
-                android:layout_width="0dp"
-                android:layout_height="66dp"
+                android:layout_width="263dp"
+                android:layout_height="61dp"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:importantForAutofill="no"
@@ -280,6 +262,126 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NotesEditText" />
+
+            <Button
+                android:id="@+id/DisplayAddressButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/address_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/InfoSuppLabel" />
+
+            <TextView
+                android:id="@+id/LabelNumAddress"
+                android:layout_width="90dp"
+                android:layout_height="27dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="52dp"
+                android:labelFor="@id/EditNumAddress"
+                android:text="@string/label_num_address"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/DisplayAddressButton" />
+
+            <EditText
+                android:id="@+id/EditNumAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="48dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="number"
+                app:layout_constraintBottom_toBottomOf="@+id/LabelNumAddress"
+                app:layout_constraintEnd_toEndOf="@+id/AddButtonSelectTag"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/LabelNumAddress"
+                app:layout_constraintTop_toBottomOf="@+id/DisplayAddressButton"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/LabelStreetAddress"
+                android:layout_width="92dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="38dp"
+                android:labelFor="@id/EditStreetAddress"
+                android:text="@string/street_address"
+                app:layout_constraintBottom_toBottomOf="@+id/EditStreetAddress"
+                app:layout_constraintEnd_toEndOf="@+id/LabelNumAddress"
+                app:layout_constraintStart_toStartOf="@+id/LabelNumAddress"
+                app:layout_constraintTop_toBottomOf="@+id/LabelNumAddress" />
+
+            <EditText
+                android:id="@+id/EditStreetAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/street_address_edit"
+                app:layout_constraintEnd_toEndOf="@+id/EditNumAddress"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/EditNumAddress"
+                app:layout_constraintTop_toBottomOf="@+id/EditNumAddress"
+                android:autofillHints="" />
+
+
+            <TextView
+                android:id="@+id/LabelCityAddress"
+                android:layout_width="89dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="38dp"
+                android:labelFor="@id/EditCityAddress"
+                android:text="@string/city_address"
+                app:layout_constraintBottom_toBottomOf="@+id/EditCityAddress"
+                app:layout_constraintEnd_toEndOf="@+id/LabelStreetAddress"
+                app:layout_constraintStart_toStartOf="@+id/LabelStreetAddress"
+                app:layout_constraintTop_toBottomOf="@+id/LabelStreetAddress"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/EditCityAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/street_address_edit"
+                app:layout_constraintEnd_toEndOf="@+id/EditStreetAddress"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/EditStreetAddress"
+                app:layout_constraintTop_toBottomOf="@+id/EditStreetAddress"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/LabelStateAddress"
+                android:layout_width="89dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="38dp"
+                android:labelFor="@id/EditStateAddress"
+                android:text="@string/state_address"
+                app:layout_constraintBottom_toBottomOf="@+id/EditStateAddress"
+                app:layout_constraintEnd_toEndOf="@+id/LabelCityAddress"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/LabelCityAddress"
+                app:layout_constraintTop_toBottomOf="@+id/LabelCityAddress"
+                app:layout_constraintVertical_bias="0.382" />
+
+            <EditText
+                android:id="@+id/EditStateAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:labelFor="@id/LabelStateAddress"
+                android:text="@string/state_address_edit"
+                app:layout_constraintEnd_toEndOf="@+id/EditCityAddress"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/EditCityAddress"
+                app:layout_constraintTop_toBottomOf="@+id/EditCityAddress" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

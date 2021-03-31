@@ -66,6 +66,18 @@ public class AddActivity extends AppCompatActivity {
     private  final Calendar myCalendar = Calendar.getInstance();
 
 
+    private Button displayAddressButton;
+    private TextView labelNumAddress;
+    private EditText numAddress;
+    private TextView labelStreetAddress;
+    private EditText streetAddress;
+    private TextView labelCityAddress;
+    private EditText cityAddress;
+    private TextView labelStateAddress;
+    private EditText stateAddress;
+    private boolean isVisible;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +96,27 @@ public class AddActivity extends AppCompatActivity {
         this.notesEditText = findViewById(R.id.NotesEditText);
         this.addTag = findViewById(R.id.AddButtonSelectTag);
 
+
+        this.displayAddressButton = findViewById(R.id.DisplayAddressButton);
+        this.numAddress = findViewById(R.id.EditNumAddress);
+        this.labelNumAddress = findViewById(R.id.LabelNumAddress);
+        this.streetAddress = findViewById(R.id.EditStreetAddress);
+        this.labelStreetAddress = findViewById(R.id.LabelStreetAddress);
+        this.cityAddress = findViewById(R.id.EditCityAddress);
+        this.labelCityAddress = findViewById(R.id.LabelCityAddress);
+        this.stateAddress = findViewById(R.id.EditStateAddress);
+        this.labelStateAddress = findViewById(R.id.LabelStateAddress);
+        this.numAddress.setVisibility(View.GONE);
+        this.labelNumAddress.setVisibility(View.GONE);
+        this.streetAddress.setVisibility(View.GONE);
+        this.labelStreetAddress.setVisibility(View.GONE);
+        this.cityAddress.setVisibility(View.GONE);
+        this.labelCityAddress.setVisibility(View.GONE);
+        this.stateAddress.setVisibility(View.GONE);
+        this.labelStateAddress.setVisibility(View.GONE);
+        this.isVisible = false;
+
+
         this.selectedList = new ArrayList<>();
 
         parseDate();
@@ -92,9 +125,7 @@ public class AddActivity extends AppCompatActivity {
 
         selected = new ArrayList<>();
 
-
         final ITagHandler a = ((App) getApplication()).getTagHandler();
-
 
         available = a.getTags();
 
@@ -103,24 +134,23 @@ public class AddActivity extends AppCompatActivity {
         addTag.setOnClickListener(new View.OnClickListener() {
               public void onClick(View v) {
               String str = spinner.getSelectedItem().toString();
-              ArrayList<ITag> checklist = new ArrayList();
               for (ITag tag : available)
                   if(tag.getName().equals(str)){
                       selected.add(tag);
-                      checklist.add(tag);
+                      available.remove(tag);
+                      setSpinnerAdapter();
                       displaySelectedTag();
                       return;
                   }
-
-
               }
         });
 
 
-
-        //spinner.setOnTouchListener(spinnerOnTouch);
-
-        //spinner.setOnKeyListener(spinnerOnKey);
+        displayAddressButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setVisibilityAddress(v);
+            }
+        });
 
 
         final IInvoiceHandler invoiceHandler = ((App) getApplication()).getInvoiceHandler();
@@ -142,10 +172,10 @@ public class AddActivity extends AppCompatActivity {
                 try {
                     Date date = sdf.parse(editTextDate.getText().toString());
                     invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
+
                     addOptionalInfo();
 
                     invoiceHandler.AddInvoice(invoice);
-
 
                     int cpt = 0;
                     int[] tagIds = new int[selected.size()];
@@ -196,13 +226,14 @@ public class AddActivity extends AppCompatActivity {
         if(!this.destNameEdit.getText().toString().equals(""))
             count ++;
 
+
         return count;
     }
 
     private void updateLabel() {
         String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         this.editTextDate.setText(sdf.format(myCalendar.getTime()));
     }
 
@@ -233,72 +264,18 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    private void addSpinnerPaymentType(){
-        int pos = spinnerPaymentTypes.getSelectedItemPosition();
-
-        switch(pos){
-            case 0 :
-                    invoice.addPayment(Payment.bankcard);
-                break;
-            case 1:
-                    invoice.addPayment(Payment.bankcheck);
-                break;
-            case 2:
-                    invoice.addPayment(Payment.cash);
-                break;
-            default:
-                break;
-        }
-
-    }
 
     private void displaySelectedTag(){
 
         ViewGroup group = findViewById(R.id.tags_selected);
         group.removeAllViews();
-        boolean istwice = false;
-        for(ITag tag : selected) {
-
-/*
-            for(int i = 0; i < checklist.size(); i++){
-                if(!checklist.get(i).getName().equals(tag)){
-                    Log.v("test_tag_selected", tag.getName());
-                    addToTagView(tag, getLayoutInflater(), group);
-                    checklist.add(tag);
-
-                }
-            }
-
-*/
-            if(this.selectedList.size() > 0 ){
-                for (ITag tag2 : this.selectedList) {
-                    if (tag2.getName().equals(tag)) {
-                        istwice = true;
-                    }
-                }
-            }
-            if(this.selectedList.size() == 0){
-                addToTagView(tag, getLayoutInflater(), group);
-                this.selectedList.add(tag);
-                Log.v("test_tag_added_size_0", selectedList.get(selectedList.size()-1).getName());
-            }
-            else if (!istwice){
-                addToTagView(tag, getLayoutInflater(), group);
-                this.selectedList.add(tag);
-                Log.v("test_tag_added_size_0", selectedList.get(selectedList.size()-1).getName());
-            }
-            else {
-                Toast toast = Toast.makeText(getApplicationContext(),"Tag already selected", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-        }
-
+        for(ITag tag : selected)
+            addToTagView(tag, getLayoutInflater(), group);
     }
 
 
     private void addToTagView(ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
-        View view = layoutInflater.inflate(R.layout.tag_layout, parentLayout, false);
+        View view = layoutInflater.inflate(R.layout.small_tag_layout, parentLayout, false);
         // In order to get the view we have to use the new view with text_layout in it
         TextView textView = view.findViewById(R.id.tag_layout_text);
         textView.setText(tag.getName());
@@ -306,21 +283,16 @@ public class AddActivity extends AppCompatActivity {
 
         ImageButton button = view.findViewById(R.id.imageButton);
         final ITag _tag = tag;
-/*
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selected.remove(_tag);
-                ViewGroup group = findViewById(R.id.tags_view_small);
-                group.removeAllViews();
-                for(ITag tag : selected)
-                    addToTagView(tag,getLayoutInflater(),group);
+                displaySelectedTag();
                 available.add(_tag);
                 setSpinnerAdapter();
-
             }
         });
-*/
 
         if (tag.hasIcon()){
             ImageView img = view.findViewById(R.id.tagImageView);
@@ -339,11 +311,73 @@ public class AddActivity extends AppCompatActivity {
 
         if(!this.personalNameEdit.equals(""))
             invoice.addInvoiceName(this.personalNameEdit.getText().toString());
+/*
+        Address a;
+        if((!this.numAddress.equals(""))&&(!this.streetAddress.equals(""))&&(!this.cityAddress.equals(""))&&(!this.stateAddress.equals(""))){
+            int num = Integer.parseInt(this.numAddress.getText().toString());
+            String street = this.streetAddress.getText().toString();
+            String city = this.cityAddress.getText().toString();
+            String state = this.stateAddress.getText().toString();
+            a = new Address(num,street,city,state);
 
+        } else {
+            a = new Address(-1,"","","");
+
+        }
+
+        invoice.addAddress(a);
+*/
+
+    }
+
+    private void addSpinnerPaymentType(){
+        int pos = spinnerPaymentTypes.getSelectedItemPosition();
+
+        switch(pos){
+            case 0 :
+                invoice.addPayment(Payment.bankcard);
+                break;
+            case 1:
+                invoice.addPayment(Payment.bankcheck);
+                break;
+            case 2:
+                invoice.addPayment(Payment.cash);
+                break;
+            default:
+                break;
+        }
 
     }
 
 
+    private void setVisibilityAddress(View v){
+        if(this.isVisible){
+            this.numAddress.setVisibility(v.GONE);
+            this.labelNumAddress.setVisibility(v.GONE);
+            this.streetAddress.setVisibility(View.GONE);
+            this.labelStreetAddress.setVisibility(View.GONE);
+            this.cityAddress.setVisibility(View.GONE);
+            this.labelCityAddress.setVisibility(View.GONE);
+            this.stateAddress.setVisibility(View.GONE);
+            this.labelStateAddress.setVisibility(View.GONE);
+            this.displayAddressButton.setText(R.string.address_button);
+            this.isVisible = false;
+        }
+        else {
+            this.numAddress.setVisibility(v.VISIBLE);
+            this.labelNumAddress.setVisibility(v.VISIBLE);
+            this.streetAddress.setVisibility(View.VISIBLE);
+            this.labelStreetAddress.setVisibility(View.VISIBLE);
+            this.cityAddress.setVisibility(View.VISIBLE);
+            this.labelCityAddress.setVisibility(View.VISIBLE);
+            this.stateAddress.setVisibility(View.VISIBLE);
+            this.labelStateAddress.setVisibility(View.VISIBLE);
 
+            this.displayAddressButton.setText(R.string.address_button_hide);
+            this.isVisible = true;
+        }
+    }
+
+    
 
 }
