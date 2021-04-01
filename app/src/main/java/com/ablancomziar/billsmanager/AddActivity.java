@@ -165,6 +165,7 @@ public class AddActivity extends AppCompatActivity {
                             selected.add(t);
                             available.remove(t);
                         }
+                        displaySelectedTag();
                     }
                     if(i.getAddress() != null){
                         numAddress.setText(i.getAddress().getNum() + "");
@@ -178,6 +179,8 @@ public class AddActivity extends AppCompatActivity {
                         notesEditText.setText(i.getPersonalName());
                     if(i.getPayment()!= null)
                         spinnerPaymentTypes.setSelection(i.getPayment() == Payment.bankcard? 0 : i.getPayment() == Payment.bankcheck? 1 : 2);
+                    //remoev the invoice
+                    ((App) getApplication()).getInvoiceHandler().removeInvoice(i);
                 }
             }
         }
