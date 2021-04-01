@@ -30,6 +30,7 @@ public final class Invoice implements Serializable {
         this.invoiceDate = invoiceDate;
         this.isCredit = isCredit;
         this.name = name;
+        this.tags = new int[0];
     }
 
     public void addPayment(Payment payment){
@@ -53,9 +54,7 @@ public final class Invoice implements Serializable {
     }
 
     public void addTagsId(int[] tags){
-        if(this.tags == null)
-            this.tags = tags;
-
+        this.tags = tags;
     }
 
     public float getAmount() { return this.amount; }

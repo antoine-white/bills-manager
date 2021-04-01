@@ -170,20 +170,27 @@ public class AddActivity extends AppCompatActivity {
                         // cette fonction ajoute les champs optionnels à la fonction
                         addOptionalInfo();
 
-                        invoiceHandler.AddInvoice(invoice);
 
-                        // ajoute les tags à la facture
-                        int cpt = 0;
-                        int[] tagIds = new int[selected.size()];
-                        for(ITag tag : selected){
-                            tagIds[cpt] = tag.getId();
-                            Log.v("test_tag_id_size", selected.get(cpt).getName());
-                            cpt ++;
+                        if (selected.size() > 0){
+                            // ajoute les tags à la facture
+                            int cpt = 0;
+                            int[] tagIds = new int[selected.size()];
+                            for(ITag tag : selected){
+                                tagIds[cpt] = tag.getId();
+                                Log.v("test_tag_id_size", selected.get(cpt).getName());
+                                cpt ++;
+                            }
+                            invoice.addTagsId(tagIds);
+                        } else {
+                            invoice.addTagsId(new int[]{DefaultTag.ID_NO_LABEL});
                         }
-                        invoice.addTagsId(tagIds);
+
+                        invoiceHandler.AddInvoice(invoice);
 
                         Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.toastinvoicecompleted), Toast.LENGTH_SHORT);
                         toast.show();
+
+
                         //renvoie vers le menu
                         Intent activity = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(activity);

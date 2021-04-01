@@ -22,7 +22,7 @@ class InvoiceHandler implements IInvoiceHandler{
     private List<Invoice> invoices;
     private App app;
     private static final String INVOICE_FILE_START = "BILLS_MANAGER_INVOICE_";
-    private static final String FILENAME_INCOICES = "invoices8";
+    private static final String FILENAME_INCOICES = "invoices9";
 
     public InvoiceHandler(App a){
         invoices = new ArrayList<>();
@@ -58,6 +58,8 @@ class InvoiceHandler implements IInvoiceHandler{
     @Override
     public void AddInvoice(Invoice i){
         this.invoices.add(i);
+        Log.println(Log.DEBUG, APP_TAG, "got " + i);
+        Log.println(Log.DEBUG, APP_TAG, "got  " + i.getTags());
         saveInvoices();
     }
 
@@ -65,7 +67,8 @@ class InvoiceHandler implements IInvoiceHandler{
         try {
             FileOutputStream fos = app.openFileOutput(FILENAME_INCOICES, Context.MODE_PRIVATE);
             ObjectOutputStream os = new ObjectOutputStream(fos);
-            Log.println(Log.DEBUG, APP_TAG, "saved " + invoices);
+            for(Invoice i : invoices)
+                Log.println(Log.DEBUG, APP_TAG, "saved " + i);
 
             os.writeObject(invoices);
             os.close();

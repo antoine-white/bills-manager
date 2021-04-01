@@ -156,14 +156,10 @@ public class StatsActivity extends AppCompatActivity {
         List<Invoice> btwDate = new ArrayList<>();
         for(Invoice i : all){
             Calendar c = toCalendar(i.getInvoiceDate());
-            Log.d(App.getAppTag(),"is before : " + startCalendar.before(c));
-            Log.d(App.getAppTag(),"is after : " + endCalendar.after(c));
             if(startCalendar.before(c) && endCalendar.after(c))
                 btwDate.add(i);
         }
-        Log.d(App.getAppTag(),"lll  : " + btwDate);
         Map<Integer,Float> values = getTagAndAmount(btwDate);
-        Log.d(App.getAppTag(),"Values  : " + values);
         updateGraphicView(values);
 
     }
