@@ -6,9 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -27,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -76,9 +73,6 @@ public class AddActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(getString(R.string.addtitle));
 
-
-
-
         this.amountEditText = findViewById(R.id.AmountEditText);
         this.editTextDate = findViewById(R.id.editTextDate);
         this.debtor = findViewById(R.id.radioButton);
@@ -89,8 +83,6 @@ public class AddActivity extends AppCompatActivity {
         this.personalNameEdit = findViewById(R.id.PersonalNameEdit);
         this.notesEditText = findViewById(R.id.NotesEditText);
         ImageButton addTag = findViewById(R.id.AddButtonSelectTag);
-
-
         this.displayAddressButton = findViewById(R.id.DisplayAddressButton);
         this.numAddress = findViewById(R.id.EditNumAddress);
         this.labelNumAddress = findViewById(R.id.LabelNumAddress);
@@ -100,27 +92,20 @@ public class AddActivity extends AppCompatActivity {
         this.labelCityAddress = findViewById(R.id.LabelCityAddress);
         this.stateAddress = findViewById(R.id.EditStateAddress);
         this.labelStateAddress = findViewById(R.id.LabelStateAddress);
-        this.numAddress.setVisibility(View.GONE);
-        this.labelNumAddress.setVisibility(View.GONE);
-        this.streetAddress.setVisibility(View.GONE);
-        this.labelStreetAddress.setVisibility(View.GONE);
-        this.cityAddress.setVisibility(View.GONE);
-        this.labelCityAddress.setVisibility(View.GONE);
-        this.stateAddress.setVisibility(View.GONE);
-        this.labelStateAddress.setVisibility(View.GONE);
-        this.isVisible = false;
-
-
-        parseDate();
-
         spinner = findViewById(R.id.spinnerSelectTagForNewInvoice);
 
+        // cache les champs de l'adresse
+        this.isVisible = false;
+        setVisibilityAddress(null);
+
+        // initialise le calendrier
+        parseDate();
+
         selected = new ArrayList<>();
+        final ITagHandler tagHandler = ((App) getApplication()).getTagHandler();
+        available = tagHandler.getTags();
 
-        final ITagHandler a = ((App) getApplication()).getTagHandler();
-
-        available = a.getTags();
-
+        // initialise le spinner des tags
         setSpinnerAdapter();
 
         // Ce bouton sert à ajouter un tag à la facture
@@ -146,6 +131,7 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+        // Charge une facture si elle disponible
         Intent intent = getIntent();
         if (intent != null){
             Bundle b = intent.getExtras();
@@ -161,7 +147,7 @@ public class AddActivity extends AppCompatActivity {
                     destNameEdit.setText(i.getName());
                     if (i.getTags() != null){
                         for (int id : i.getTags()){
-                            ITag t = a.getTagById(id);
+                            ITag t = tagHandler.getTagById(id);
                             selected.add(t);
                             available.remove(t);
                         }
@@ -179,8 +165,6 @@ public class AddActivity extends AppCompatActivity {
                         notesEditText.setText(i.getPersonalName());
                     if(i.getPayment()!= null)
                         spinnerPaymentTypes.setSelection(i.getPayment() == Payment.bankcard? 0 : i.getPayment() == Payment.bankcheck? 1 : 2);
-                    //remove the invoice
-                    ((App) getApplication()).getInvoiceHandler().removeInvoice(i);
                 }
             }
         }
@@ -364,7 +348,6 @@ public class AddActivity extends AppCompatActivity {
 
 
     // ajoute le moyen de paiement
-
     private void addSpinnerPaymentType(Invoice invoice){
         int pos = spinnerPaymentTypes.getSelectedItemPosition();
 
@@ -384,8 +367,7 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
-    // affichage du bouton adresse ou non
-
+    // affichage des champs adresse ou non
     private void setVisibilityAddress(View v){
         if(this.isVisible){
             this.numAddress.setVisibility(View.GONE);
@@ -413,7 +395,4 @@ public class AddActivity extends AppCompatActivity {
             this.isVisible = true;
         }
     }
-
-    
-
 }

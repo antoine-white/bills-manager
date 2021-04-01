@@ -3,10 +3,7 @@ package com.ablancomziar.billsmanager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.AnimatedStateListDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -119,6 +116,7 @@ public class SavedActivity extends AppCompatActivity {
             img.setImageDrawable(tag.getIcon());
             img.setColorFilter(tag.getColor());
         }
+
         parentLayout.addView(view);
     }
 
@@ -153,14 +151,14 @@ public class SavedActivity extends AppCompatActivity {
         TextView textView = view.findViewById(R.id.name);
         textView.setText(invoice.getName());
 
-        final IInvoiceHandler a = ((App) getApplication()).getInvoiceHandler();
+        final IInvoiceHandler invoiceHandler = ((App) getApplication()).getInvoiceHandler();
         final SavedActivity s = this;
 
-        ImageButton button = view.findViewById(R.id.download);
-        button.setOnClickListener(new View.OnClickListener() {
+        ImageButton download = view.findViewById(R.id.download);
+        download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = a.writeInvoiceDownload(invoice,SavedActivity.this);
+                File file = invoiceHandler.writeInvoiceDownload(invoice,SavedActivity.this);
                 if (file != null)
                     Toast.makeText(v.getContext(), getString(R.string.download_succ),
                         Toast.LENGTH_LONG).show();
@@ -183,7 +181,7 @@ public class SavedActivity extends AppCompatActivity {
         see.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = a.writeInvoiceDownload(invoice,SavedActivity.this);
+                File file = invoiceHandler.writeInvoiceDownload(invoice,SavedActivity.this);
                 if (file != null){
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     Uri uri = FileProvider.getUriForFile(getApplicationContext(), getPackageName() + ".provider", file);
@@ -201,7 +199,7 @@ public class SavedActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (a.removeInvoice(invoice)){
+                if (invoiceHandler.removeInvoice(invoice)){
                     Toast.makeText(v.getContext(), getString(R.string.delete_succ),
                             Toast.LENGTH_LONG).show();
                     updateInvoiceView();
@@ -210,7 +208,6 @@ public class SavedActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-
 
         parentLayout.addView(view);
     }

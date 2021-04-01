@@ -16,6 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuInteractionListener {
 
+    //sub class to handle individual menu data
     class MenuData{
         private int id;
         private String name;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
         }
     }
 
-    // todo string.xml
     private MenuData[] MENU_DATA (){
         return new MenuData[]{
                 new MenuData(R.drawable.add, getString(R.string.add),AddActivity.class),
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
             }
     }
 
-    // we need that so the list is not rerender when the screen rotate
+    // we need that so the list is not re-render when the screen rotate
     @Override
     public void onSaveInstanceState(Bundle outInstanceState) {
         super.onSaveInstanceState(outInstanceState);

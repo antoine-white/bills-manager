@@ -105,11 +105,11 @@
 
     <!-- content  -->
     <string name="see_the_invoice">see the invoice</string>
+    <string name="edit_invoice">edit the invoice</string>
     <string name="delete_the_invoice">delete the invoice</string>
     <string name="donwload_the_invoice">donwload the invoice</string>
     <string name="tag_icon">tag icon</string>
     <string name="delete_the_tag">delete the tag</string>
-    <string name="edit_invoice" />
 
 
 </resources>

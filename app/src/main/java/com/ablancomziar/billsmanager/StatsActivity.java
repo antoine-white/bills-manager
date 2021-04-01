@@ -1,14 +1,11 @@
 package com.ablancomziar.billsmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.util.Pair;
 
 import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,14 +20,23 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class StatsActivity extends AppCompatActivity {
+
+    /**
+     * util method that converts Date to Calendar
+     * @param date
+     * @return a calandar with the value of the date
+     */
+    public static Calendar toCalendar(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
+    }
 
     private static final int DEFAULT_YEAR = 2021;
     private static final int DEFAULT_MONTH = 0;
@@ -111,17 +116,13 @@ public class StatsActivity extends AppCompatActivity {
         updateLabel(false);
     }
 
-    public static Calendar toCalendar(Date date){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        return cal;
-    }
-
+    // inverted sort of a map into a list of a pair according to the value in the map
     public static List<Pair<Integer,Float>> sort(Map<Integer,Float> map){
         List<Pair<Integer,Float>> l = new ArrayList<>();
         for(Map.Entry<Integer,Float> entry : map.entrySet())
             l.add(new Pair<>(entry.getKey(),entry.getValue()));
         List<Pair<Integer,Float>> res = new ArrayList<>();
+        // the sort is not optimal ...
         while(l.size() > 0){
             Pair<Integer, Float> max_ = max(l);
             l.remove(max_);
@@ -190,7 +191,6 @@ public class StatsActivity extends AppCompatActivity {
     private void addIndividualGraphic(Pair<ITag,Float> value, LayoutInflater layoutInflater, ViewGroup parentLayout, float max){
         View view = layoutInflater.inflate(R.layout.graphic_tag, parentLayout, false);
 
-        // In order to get the view we have to use the new view with text_layout in it
         TextView textView = view.findViewById(R.id.tag_name_graph);
         textView.setText(value.first.getName());
 
@@ -214,6 +214,7 @@ public class StatsActivity extends AppCompatActivity {
             img.setImageDrawable(value.first.getIcon());
             img.setColorFilter(value.first.getColor());
         }
+
         parentLayout.addView(view);
     }
 }

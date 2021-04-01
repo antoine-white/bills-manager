@@ -7,13 +7,14 @@
     <string name="tran">transport</string>
     <string name="heal">santé</string>
     <string name="add">Ajouter</string>
-    <string name="edit_tags">Editer les Tags</string>
-    <string name="saved_invoices">Factures sauvegardées</string>
+    <string name="edit_tags">Editer les tags</string>
+    <string name="saved_invoices">Factures stockées</string>
     <string name="stats">"Statistiques "</string>
-    <string name="policies">Politiques de confidentialité</string>
     <string name="could_not_add">Ajout du tag impossible</string>
     <string name="could_not_download">Téléchargement impossible</string>
-    <string name="download_succ">Téléchargement impossible</string>
+    <string name="could_not_delete">Suppression impossible</string>
+    <string name="delete_succ">Suppression réussie </string>
+    <string name="download_succ">Téléchargement réussi</string>
     <string name="name_already">Ajout de %1$s impossible. Nom déjà pris</string>
     <string name="too_short">Ajout de %1$s impossible. Nom trop court</string>
     <string name="addtitle">Ajoutez une facture</string>
@@ -45,6 +46,10 @@
     <string name="selection_start_date">Choisir date de départ</string>
     <string name="selection_end_date">Choisir date de fin</string>
 
+    <string name="cannot_delete_default_tag">Suppression tag par défaut impossible</string>
+    <string name="could_not_delete_tag">Tag utilisé, suppression impossible </string>
+    <string name="delete_succ_tag">Suppression du tag réussi</string>
+
 
 
     <string name="label_num_address">Num : </string>
@@ -57,6 +62,11 @@
     <string name="toast_address_completed"> Adresse commencée mais non complète </string>
 
 
-
+    <string name="edit_invoice">éditer la facture</string>
+    <string name="see_the_invoice">voir la facture</string>
+    <string name="delete_the_invoice">supprimer la facture</string>
+    <string name="donwload_the_invoice">télécharger la facture</string>
+    <string name="tag_icon">icone de tag</string>
+    <string name="delete_the_tag">supprimer le tag</string>
 
 </resources>
