@@ -54,7 +54,7 @@
 
     <string name="label_num_address">Num : </string>
     <string name="address_button">Afficher adresse</string>
-    <string name="address_button_hide">Cacher addresse</string>
+    <string name="address_button_hide">Cacher adresse</string>
     <string name="street_address">Rue : </string>
     <string name="city_address">Ville : </string>
     <string name="state_address">Etat :</string>

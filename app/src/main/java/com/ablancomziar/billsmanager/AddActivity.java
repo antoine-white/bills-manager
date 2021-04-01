@@ -369,7 +369,7 @@ public class AddActivity extends AppCompatActivity {
 
     // affichage des champs adresse ou non
     private void setVisibilityAddress(View v){
-        if(this.isVisible){
+        if(!this.isVisible){
             this.numAddress.setVisibility(View.GONE);
             this.labelNumAddress.setVisibility(View.GONE);
             this.streetAddress.setVisibility(View.GONE);
@@ -379,7 +379,7 @@ public class AddActivity extends AppCompatActivity {
             this.stateAddress.setVisibility(View.GONE);
             this.labelStateAddress.setVisibility(View.GONE);
             this.displayAddressButton.setText(R.string.address_button);
-            this.isVisible = false;
+            this.isVisible = true;
         }
         else {
             this.numAddress.setVisibility(View.VISIBLE);
@@ -392,7 +392,7 @@ public class AddActivity extends AppCompatActivity {
             this.labelStateAddress.setVisibility(View.VISIBLE);
 
             this.displayAddressButton.setText(R.string.address_button_hide);
-            this.isVisible = true;
+            this.isVisible = false;
         }
     }
 }
