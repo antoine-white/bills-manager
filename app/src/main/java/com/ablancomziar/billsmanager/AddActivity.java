@@ -179,7 +179,7 @@ public class AddActivity extends AppCompatActivity {
                         notesEditText.setText(i.getPersonalName());
                     if(i.getPayment()!= null)
                         spinnerPaymentTypes.setSelection(i.getPayment() == Payment.bankcard? 0 : i.getPayment() == Payment.bankcheck? 1 : 2);
-                    //remo the invoice
+                    //remove the invoice
                     ((App) getApplication()).getInvoiceHandler().removeInvoice(i);
                 }
             }

@@ -53,21 +53,23 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
         ((TextView)findViewById(R.id.version)).setText(getString(R.string.version, BuildConfig.VERSION_NAME));
 
+        if(savedInstanceState == null){
 
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+            for( MenuData data : MENU_DATA()){
+                MenuItem fragment = MenuItem.newInstance(data.getId(),data.getName());
+                fragmentTransaction.add(R.id.parent_menu,fragment);
+            }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        for( MenuData data : MENU_DATA()){
-            MenuItem fragment = MenuItem.newInstance(data.getId(),data.getName());
-            fragmentTransaction.add(R.id.parent_menu,fragment);
+            fragmentTransaction.commit();
         }
-
-        fragmentTransaction.commit();
     }
 
     @Override
@@ -78,5 +80,12 @@ public class MainActivity extends AppCompatActivity implements MenuItem.OnMenuIn
                 Intent t = new Intent(this,data.getCls());
                 startActivity(t);
             }
+    }
+
+    // we need that so the list is not rerender when the screen rotate
+    @Override
+    public void onSaveInstanceState(Bundle outInstanceState) {
+        super.onSaveInstanceState(outInstanceState);
+        outInstanceState.putInt("dummy", 1);
     }
 }
