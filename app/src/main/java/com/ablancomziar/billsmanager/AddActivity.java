@@ -52,9 +52,6 @@ public class AddActivity extends AppCompatActivity {
     private EditText personalNameEdit;
     private EditText notesEditText;
 
-    private Invoice invoice;
-
-
 
     private  final Calendar myCalendar = Calendar.getInstance();
 
@@ -165,11 +162,10 @@ public class AddActivity extends AppCompatActivity {
                     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
                     try {
                         Date date = sdf.parse(editTextDate.getText().toString());
-                        invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
+                        Invoice invoice = new Invoice(Float.parseFloat(amountEditText.getText().toString()),date ,iscredit,destNameEdit.getText().toString());
 
                         // cette fonction ajoute les champs optionnels à la fonction
-                        addOptionalInfo();
-
+                        addOptionalInfo(invoice);
 
                         if (selected.size() > 0){
                             // ajoute les tags à la facture
@@ -184,6 +180,7 @@ public class AddActivity extends AppCompatActivity {
                         } else {
                             invoice.addTagsId(new int[]{DefaultTag.ID_NO_LABEL});
                         }
+
 
                         invoiceHandler.AddInvoice(invoice);
 
@@ -303,8 +300,8 @@ public class AddActivity extends AppCompatActivity {
 
 
     // vérifie et ajoute à la facture si des champs optionnels sont remplis
-    private void addOptionalInfo(){
-        addSpinnerPaymentType();
+    private void addOptionalInfo(Invoice invoice){
+        addSpinnerPaymentType(invoice);
         if(!this.notesEditText.getText().toString().equals(""))
             invoice.addNotes(this.notesEditText.getText().toString());
 
@@ -328,7 +325,7 @@ public class AddActivity extends AppCompatActivity {
 
     // ajoute le moyen de paiement
 
-    private void addSpinnerPaymentType(){
+    private void addSpinnerPaymentType(Invoice invoice){
         int pos = spinnerPaymentTypes.getSelectedItemPosition();
 
         switch(pos){
