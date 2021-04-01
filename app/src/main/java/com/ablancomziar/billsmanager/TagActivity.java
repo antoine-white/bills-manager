@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,14 +62,34 @@ public class TagActivity extends AppCompatActivity {
 
     }
 
-    private void addToList(ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
-        View view = layoutInflater.inflate(R.layout.tag_layout, parentLayout, false);
+    private void addToList(final ITag tag, LayoutInflater layoutInflater, ViewGroup parentLayout ){
+        final View view = layoutInflater.inflate(R.layout.tag_layout, parentLayout, false);
 
         TextView textView = view.findViewById(R.id.tag_layout_text);
         textView.setText(tag.getName());
 
         TextView textViewId = view.findViewById(R.id.tag_layout_id);
         textViewId.setText(getString(R.string.tag_id,tag.getId()));
+
+        final ITagHandler a = ((App) getApplication()).getTagHandler();
+
+        ImageButton delete = view.findViewById(R.id.delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tag instanceof DefaultTag)
+                    Toast.makeText(v.getContext(), getString(R.string.cannot_delete_default_tag),
+                            Toast.LENGTH_LONG).show();
+                else if (a.deleteTag(tag.getId())){
+                    Toast.makeText(v.getContext(), getString(R.string.delete_succ_tag),
+                            Toast.LENGTH_LONG).show();
+                    ((ViewGroup)findViewById(R.id.tag_list)).removeView(view);
+                }
+                else Toast.makeText(v.getContext(), getString(R.string.could_not_delete_tag),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         if (tag.hasIcon()){
             ImageView img = view.findViewById(R.id.tagImageView);

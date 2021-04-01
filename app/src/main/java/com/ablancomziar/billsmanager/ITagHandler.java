@@ -6,4 +6,5 @@ public interface ITagHandler {
     List<ITag> getTags();
     ITag getTagById(int id);
     ITag addTag(String name);
+    boolean deleteTag(int id);
 }

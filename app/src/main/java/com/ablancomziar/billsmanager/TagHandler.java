@@ -100,10 +100,29 @@ class TagHandler implements ITagHandler{
         return t;
     }
 
+    @Override
+    public boolean deleteTag(int id) {
+        //could not delete not custom tag
+        if(id < LAST_ID_DEFAULT)
+            return false;
+        List<Invoice> invoices =  app.getInvoiceHandler().getInvoices();
+        for (Invoice i : invoices) {
+            for (int j : i.getTags())
+                if (j == id)
+                    return false;
+        }
+        boolean tmp = this.customTags.remove(this.getTagById(id));
+        saveCustomTags();
+        return tmp;
+    }
+
 
     private void saveCustomTags(){
         List<String> s = new ArrayList<>();
-        s.add(customTags.get(customTags.size()-1).getId() + "\n");
+        if (customTags.size() == 0)
+            s.add(TagHandler.LAST_ID_DEFAULT + "\n");
+        else
+            s.add(customTags.get(customTags.size()-1).getId() + "\n");
         for (CustomTag c : this.customTags)
             s.add(c.getId() + "," + c.getName() + "," + c.getColor() + "\n");
         try {

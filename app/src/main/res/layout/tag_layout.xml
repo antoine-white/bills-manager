@@ -28,4 +28,14 @@
         android:textColor="?attr/editTextColor"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:maxWidth="40dp"
+        android:minWidth="40dp"
+        android:tint="@android:color/holo_red_dark"
+        app:srcCompat="@drawable/delete" />
 </LinearLayout>

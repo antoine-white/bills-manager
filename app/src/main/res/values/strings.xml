@@ -55,6 +55,9 @@
     <string name="too_short">Could not add %1$s. Name too short !</string>
     <string name="addNewTagLabel">Name of the new tag</string>
     <string name="addNewTagButton">Add</string>
+    <string name="cannot_delete_default_tag">Cannot delete a default tag</string>
+    <string name="could_not_delete_tag">Could not delete tag</string>
+    <string name="delete_succ_tag">Invoice delete tag</string>
 
     <!-- Add activity -->
     <string name="addtitle">Add an Invoice </string>
