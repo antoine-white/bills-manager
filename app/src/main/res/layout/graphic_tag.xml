@@ -9,6 +9,7 @@
         android:layout_width="20dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:contentDescription="@string/tag_icon"
         android:maxWidth="20dp"
         android:minWidth="20dp"
         app:srcCompat="@drawable/label" />

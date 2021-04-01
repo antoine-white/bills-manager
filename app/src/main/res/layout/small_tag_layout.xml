@@ -9,6 +9,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_weight="1"
+        android:contentDescription="@string/tag_icon"
         app:srcCompat="@drawable/label" />
 
     <TextView
@@ -27,6 +28,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="?attr/colorButtonNormal"
+        android:contentDescription="@string/delete_the_tag"
         android:tint="@android:color/holo_red_dark"
         app:srcCompat="@drawable/delete" />
 

@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Bills Manager</string>
 
     <!-- Invoice -->
@@ -34,7 +35,7 @@
     <string name="version" translatable="false">v%1$s</string>
     <string name="add">Add</string>
     <string name="edit_tags">Edit tags</string>
-    <string name="saved_invoices">Saved Invoices</string>
+    <string name="saved_invoices">Saved invoices</string>
     <string name="stats">Statistics</string>
 
     <!-- Saved Activity -->
@@ -56,8 +57,8 @@
     <string name="addNewTagLabel">Name of the new tag</string>
     <string name="addNewTagButton">Add</string>
     <string name="cannot_delete_default_tag">Cannot delete a default tag</string>
-    <string name="could_not_delete_tag">Could not delete tag</string>
-    <string name="delete_succ_tag">Invoice delete tag</string>
+    <string name="could_not_delete_tag">Could not delete a tag that is used in an invoice</string>
+    <string name="delete_succ_tag">Tag deleted suc</string>
 
     <!-- Add activity -->
     <string name="addtitle">Add an Invoice </string>
@@ -100,13 +101,14 @@
     <string name="appVersion">v0.1</string>
     <string name="appGeneralText">An application to easily manage your invoices!</string>
 
-
     <string name="button_for_add_tags">button for add tags</string>
 
-
-
-
-
+    <!-- content  -->
+    <string name="see_the_invoice">see the invoice</string>
+    <string name="delete_the_invoice">delete the invoice</string>
+    <string name="donwload_the_invoice">donwload the invoice</string>
+    <string name="tag_icon">tag icon</string>
+    <string name="delete_the_tag">delete the tag</string>
 
 
 </resources>
