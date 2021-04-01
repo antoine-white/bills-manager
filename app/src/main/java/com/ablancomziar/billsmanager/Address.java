@@ -2,7 +2,9 @@ package com.ablancomziar.billsmanager;
 
 import android.content.Context;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private int num;
     private String city;

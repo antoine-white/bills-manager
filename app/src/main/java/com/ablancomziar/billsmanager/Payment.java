@@ -1,6 +1,8 @@
 package com.ablancomziar.billsmanager;
 
-public enum Payment {
+import java.io.Serializable;
+
+public enum Payment implements Serializable {
     bankcard,
     bankcheck,
     cash;

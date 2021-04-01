@@ -26,6 +26,16 @@
         android:textAlignment="textStart" />
 
     <ImageButton
+        android:id="@+id/edit"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:contentDescription="@string/edit_invoice"
+        android:maxWidth="40dp"
+        android:minWidth="40dp"
+        app:srcCompat="@drawable/edit" />
+
+    <ImageButton
         android:id="@+id/see"
         android:layout_width="40dp"
         android:layout_height="wrap_content"

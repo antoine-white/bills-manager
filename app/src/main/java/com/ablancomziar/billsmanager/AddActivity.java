@@ -34,6 +34,7 @@ import java.util.Set;
 
 public class AddActivity extends AppCompatActivity {
 
+    public static final String INVOICE_INTENT = "Invoice";
 
     private Spinner spinner;
 
@@ -53,7 +54,7 @@ public class AddActivity extends AppCompatActivity {
     private EditText notesEditText;
 
 
-    private  final Calendar myCalendar = Calendar.getInstance();
+    private Calendar myCalendar = Calendar.getInstance();
 
 
     private Button displayAddressButton;
@@ -74,6 +75,9 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
 
         getSupportActionBar().setTitle(getString(R.string.addtitle));
+
+
+
 
         this.amountEditText = findViewById(R.id.AmountEditText);
         this.editTextDate = findViewById(R.id.editTextDate);
@@ -142,6 +146,41 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+        Intent intent = getIntent();
+        if (intent != null){
+            Bundle b = intent.getExtras();
+            if (b != null) {
+                Invoice i = (Invoice)b.get(INVOICE_INTENT);
+                if (i!= null){
+                    Log.v(App.getAppTag(), "Invoice to edit : " + i);
+                    amountEditText.setText(i.getAmount()+"");
+                    myCalendar = StatsActivity.toCalendar(i.getInvoiceDate());
+                    updateLabel();
+                    creditor.setChecked(i.isCredit());
+                    debtor.setChecked(!i.isCredit());
+                    destNameEdit.setText(i.getName());
+                    if (i.getTags() != null){
+                        for (int id : i.getTags()){
+                            ITag t = a.getTagById(id);
+                            selected.add(t);
+                            available.remove(t);
+                        }
+                    }
+                    if(i.getAddress() != null){
+                        numAddress.setText(i.getAddress().getNum() + "");
+                        streetAddress.setText(i.getAddress().getStreet());
+                        cityAddress.setText(i.getAddress().getCity());
+                        stateAddress.setText(i.getAddress().getState());
+                    }
+                    if(i.getNotes() != null)
+                        notesEditText.setText(i.getNotes());
+                    if(i.getPersonalName()!= null)
+                        notesEditText.setText(i.getPersonalName());
+                    if(i.getPayment()!= null)
+                        spinnerPaymentTypes.setSelection(i.getPayment() == Payment.bankcard? 0 : i.getPayment() == Payment.bankcheck? 1 : 2);
+                }
+            }
+        }
 
         final IInvoiceHandler invoiceHandler = ((App) getApplication()).getInvoiceHandler();
 
@@ -154,9 +193,7 @@ public class AddActivity extends AppCompatActivity {
                     toast.show();
 
                 } else {
-                    boolean iscredit = true;
-                    if((debtor.isChecked()))
-                        iscredit = false;
+                    boolean iscredit = ! debtor.isChecked();
 
 
                     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.US);
@@ -173,7 +210,7 @@ public class AddActivity extends AppCompatActivity {
                             int[] tagIds = new int[selected.size()];
                             for(ITag tag : selected){
                                 tagIds[cpt] = tag.getId();
-                                Log.v("test_tag_id_size", selected.get(cpt).getName());
+                                Log.v(App.getAppTag(), selected.get(cpt).getName());
                                 cpt ++;
                             }
                             invoice.addTagsId(tagIds);

@@ -154,7 +154,7 @@ public class SavedActivity extends AppCompatActivity {
         textView.setText(invoice.getName());
 
         final IInvoiceHandler a = ((App) getApplication()).getInvoiceHandler();
-
+        final SavedActivity s = this;
 
         ImageButton button = view.findViewById(R.id.download);
         button.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +166,16 @@ public class SavedActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 else Toast.makeText(v.getContext(), getString(R.string.could_not_download),
                         Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ImageButton edit = view.findViewById(R.id.edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(s,AddActivity.class);
+                intent.putExtra(AddActivity.INVOICE_INTENT,invoice);
+                startActivity(intent);
             }
         });
 
