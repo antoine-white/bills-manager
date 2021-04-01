@@ -187,6 +187,20 @@ public class SavedActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton delete = view.findViewById(R.id.delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (a.removeInvoice(invoice)){
+                    Toast.makeText(v.getContext(), getString(R.string.delete_succ),
+                            Toast.LENGTH_LONG).show();
+                    updateInvoiceView();
+                }
+                else Toast.makeText(v.getContext(), getString(R.string.could_not_delete),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         parentLayout.addView(view);
     }

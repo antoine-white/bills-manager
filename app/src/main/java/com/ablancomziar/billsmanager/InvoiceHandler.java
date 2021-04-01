@@ -51,6 +51,13 @@ class InvoiceHandler implements IInvoiceHandler{
     }
 
     @Override
+    public boolean removeInvoice(Invoice i) {
+        boolean tmp = this.invoices.remove(i);
+        saveInvoices();
+        return tmp;
+    }
+
+    @Override
     public List<Invoice> getInvoices() {
         return invoices;
     }

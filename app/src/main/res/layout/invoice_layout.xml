@@ -42,4 +42,14 @@
         android:maxWidth="40dp"
         android:minWidth="40dp"
         app:srcCompat="@drawable/download" />
+
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:maxWidth="40dp"
+        android:minWidth="40dp"
+        android:tint="@android:color/holo_red_dark"
+        app:srcCompat="@drawable/delete" />
 </LinearLayout>

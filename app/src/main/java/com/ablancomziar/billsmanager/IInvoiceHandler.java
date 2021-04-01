@@ -9,4 +9,5 @@ public interface IInvoiceHandler {
     List<Invoice> getInvoices();
     void AddInvoice(Invoice i);
     File writeInvoiceDownload(Invoice i, Activity activity);
+    boolean removeInvoice(Invoice i);
 }
